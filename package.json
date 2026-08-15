@@ -1,0 +1,44 @@
+{
+  "name": "it-sum",
+  "version": "0.1.0",
+  "private": true,
+  "description": "IT-SUM — non-profit bilingual course-summary platform for university students",
+  "license": "MIT",
+  "packageManager": "pnpm@11.21.0",
+  "engines": {
+    "node": ">=22.13.0",
+    "pnpm": ">=11.0.0"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:web": "turbo run dev --filter=@it-sum/web",
+    "dev:api": "turbo run dev --filter=@it-sum/api",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "test:e2e": "turbo run test:e2e",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,css}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,css}\"",
+    "gate": "pnpm lint && pnpm typecheck && pnpm test && pnpm build",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "prepare": "husky || true"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0",
+    "prettier": "^3.4.2",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.3"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "prettier --write"
+    ],
+    "*.{json,md,css}": [
+      "prettier --write"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "@it-sum/shared",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The IT-SUM API contract: Zod schemas, inferred types, constants and mock fixtures shared by the web and API workspaces",
+  "license": "MIT",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./mocks": "./src/mocks/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "rm -rf dist .turbo coverage"
+  },
+  "dependencies": {
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@it-sum/config": "workspace:*",
+    "eslint": "^9.18.0",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
+  }
+}
