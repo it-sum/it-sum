@@ -23,6 +23,16 @@
     "skipToContent": "Skip to content",
     "mainNavigation": "Main navigation"
   },
+  "dashboardSidebar": {
+    "label": "Dashboard navigation",
+    "title": "Student workspace",
+    "overview": "Overview",
+    "progress": "My progress",
+    "bookmarks": "Bookmarks",
+    "achievements": "Achievements",
+    "settings": "Settings",
+    "admin": "Admin console"
+  },
   "theme": {
     "toggle": "Toggle theme",
     "light": "Light",
@@ -148,6 +158,62 @@
       "points": "Reward points",
       "pointsDetail": "More to unlock"
     }
+  },
+  "progress": {
+    "eyebrow": "Learning analytics",
+    "title": "My progress",
+    "subtitle": "See your study rhythm, unfinished resources, and roadmap milestones in one place.",
+    "metrics": {
+      "studyDays": "Study days this week",
+      "studyTime": "Study time this week",
+      "completed": "Resources completed"
+    },
+    "weekTitle": "Weekly activity",
+    "weekSubtitle": "Minutes spent reading, watching, or practising",
+    "goal": "Goal: 60 minutes per day",
+    "days": { "mon": "Mon", "tue": "Tue", "wed": "Wed", "thu": "Thu", "fri": "Fri", "sat": "Sat", "sun": "Sun" },
+    "resourcesTitle": "Continue your resources",
+    "resourcesSubtitle": "Pick up exactly where you left off.",
+    "browse": "Browse all",
+    "continue": "Continue",
+    "roadmapsTitle": "Learning roadmaps"
+  },
+  "bookmarks": {
+    "eyebrow": "Saved for later",
+    "title": "Bookmarks",
+    "subtitle": "Keep the summaries, lectures, and sheets you want to revisit close at hand.",
+    "emptyTitle": "No bookmarks yet",
+    "emptyDescription": "Save a resource from the library and it will appear here.",
+    "browse": "Browse resources",
+    "saved": "Saved bookmark",
+    "complete": "complete",
+    "read": "Read resource",
+    "watch": "Watch video"
+  },
+  "achievements": {
+    "eyebrow": "Rewards",
+    "title": "Achievements",
+    "subtitle": "Build consistent study habits and collect points as you move through IT-SUM.",
+    "metrics": { "earned": "Badges earned", "available": "Badges available", "points": "Points earned" },
+    "earnedTitle": "Earned badges",
+    "upcomingTitle": "Keep going",
+    "points": "points"
+  },
+  "settings": {
+    "eyebrow": "Account",
+    "title": "Settings",
+    "subtitle": "Manage your profile and the preferences that shape your study experience.",
+    "profileTitle": "Profile information",
+    "profileSubtitle": "Your student account details",
+    "name": "Display name",
+    "email": "Email address",
+    "verified": "Your account is verified for the IT-SUM preview.",
+    "preferencesTitle": "Study preferences",
+    "preferencesSubtitle": "Choose how the workspace behaves",
+    "language": "Preferred language",
+    "notificationsTitle": "Notifications",
+    "weeklyReminder": "Send me a weekly study reminder",
+    "newResources": "Tell me when new resources are published"
   },
   "roadmaps": {
     "title": "Learning roadmaps",

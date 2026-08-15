@@ -24,6 +24,7 @@ export function authenticateDemo(email: string, password: string): DemoSession |
 export function setDemoSession(session: DemoSession) {
   localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(session));
   document.cookie = `${SESSION_COOKIE}=demo-${session.role}; Path=/; Max-Age=86400; SameSite=Lax`;
+  window.dispatchEvent(new Event('it_sum_session_change'));
 }
 
 export function getDemoSession(): DemoSession | null {
@@ -38,4 +39,5 @@ export function getDemoSession(): DemoSession | null {
 export function clearDemoSession() {
   localStorage.removeItem(SESSION_STORAGE_KEY);
   document.cookie = `${SESSION_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax`;
+  window.dispatchEvent(new Event('it_sum_session_change'));
 }

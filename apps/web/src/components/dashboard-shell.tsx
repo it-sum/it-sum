@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, type ReactNode } from 'react';
-import { BarChart3, BookOpen, ChevronLeft, ChevronRight, ClipboardCheck, FolderOpen, LayoutDashboard, LogOut, Menu, ShieldCheck, X } from 'lucide-react';
+import { BarChart3, BookOpen, Bookmark, ChevronLeft, ChevronRight, ClipboardCheck, FolderOpen, LayoutDashboard, LogOut, Menu, Settings, ShieldCheck, Trophy, X } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 import { Badge, Card } from '@it-sum/ui';
@@ -20,6 +20,10 @@ export function DashboardShell({ children }: { children: ReactNode }) {
 
   const items = [
     { href: `/${locale}/app`, label: rtl ? 'نظرة عامة' : 'Overview', icon: LayoutDashboard },
+    { href: `/${locale}/app/progress`, label: rtl ? 'تقدمي' : 'My progress', icon: BarChart3 },
+    { href: `/${locale}/app/bookmarks`, label: rtl ? 'المحفوظات' : 'Bookmarks', icon: Bookmark },
+    { href: `/${locale}/app/achievements`, label: rtl ? 'الإنجازات' : 'Achievements', icon: Trophy },
+    { href: `/${locale}/app/settings`, label: rtl ? 'الإعدادات' : 'Settings', icon: Settings },
     { href: `/${locale}/resources`, label: rtl ? 'مكتبة الموارد' : 'Resource library', icon: FolderOpen },
     { href: `/${locale}/app/quiz/00000000-0000-4000-8000-000000000600`, label: rtl ? 'الاختبارات' : 'Practice quizzes', icon: ClipboardCheck },
     ...(session?.role === 'admin' ? [{ href: `/${locale}/admin`, label: rtl ? 'لوحة المشرف' : 'Admin console', icon: ShieldCheck }] : []),

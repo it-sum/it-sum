@@ -1,12 +1,13 @@
 'use client';
 
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Menu, Moon, Sun, X } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { Button } from '@it-sum/ui';
 import { Link } from '@/i18n/routing';
+import { clearDemoSession, getDemoSession, type DemoSession } from '@/lib/demo-auth';
 import { useTheme } from './theme-provider';
 
 const PUBLIC_NAV = [
@@ -21,18 +22,32 @@ const PUBLIC_NAV = [
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const t = useTranslations();
   const pathname = usePathname();
+  const router = useRouter();
   const currentLocale = useLocale();
   const { theme, setTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [session, setSession] = useState<DemoSession | null>(null);
 
   const alternateLocale = currentLocale === 'ar' ? 'en' : 'ar';
   const alternateLabel = currentLocale === 'ar' ? 'English' : 'العربية';
   const resolvedPath = pathname.replace(/^\/(ar|en)/, '') || '/';
   const nextTheme = theme === 'dark' ? 'light' : 'dark';
+  const isAuthenticated = session !== null;
+
+  useEffect(() => {
+    setSession(getDemoSession());
+    const onSessionChange = () => setSession(getDemoSession());
+    window.addEventListener('it_sum_session_change', onSessionChange);
+    window.addEventListener('storage', onSessionChange);
+    return () => {
+      window.removeEventListener('it_sum_session_change', onSessionChange);
+      window.removeEventListener('storage', onSessionChange);
+    };
+  }, []);
 
   useEffect(() => {
     setMenuOpen(false);
-  }, [pathname]);
+  }, [pathname, isAuthenticated]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -42,6 +57,13 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [menuOpen]);
+
+  function handleLogout() {
+    clearDemoSession();
+    setMenuOpen(false);
+    router.push(`/${currentLocale}/login`);
+    router.refresh();
+  }
 
   return (
     <div className="min-h-dvh bg-background text-on-background">
@@ -56,53 +78,61 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
             <span className="hidden text-title-medium text-primary sm:inline">IT-SUM</span>
           </Link>
 
-          <nav aria-label={t('nav.mainNavigation')} className="hidden flex-1 items-center justify-center gap-0.5 xl:flex">
-            {PUBLIC_NAV.map((item) => {
-              const active = item.href === '/' ? resolvedPath === '/' : resolvedPath.startsWith(item.href);
-              return (
-                <Link
-                  key={item.key}
-                  href={item.href}
-                  className={`state-layer rounded-full px-3 py-2 text-label-large transition-colors 2xl:px-4 ${active ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant hover:text-on-surface'}`}
-                  aria-current={active ? 'page' : undefined}
-                >
-                  {t(`nav.${item.key}`)}
-                </Link>
-              );
-            })}
-          </nav>
+          {!isAuthenticated && (
+            <nav aria-label={t('nav.mainNavigation')} className="hidden flex-1 items-center justify-center gap-0.5 xl:flex">
+              {PUBLIC_NAV.map((item) => {
+                const active = item.href === '/' ? resolvedPath === '/' : resolvedPath.startsWith(item.href);
+                return (
+                  <Link
+                    key={item.key}
+                    href={item.href}
+                    className={`state-layer rounded-full px-3 py-2 text-label-large transition-colors 2xl:px-4 ${active ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant hover:text-on-surface'}`}
+                    aria-current={active ? 'page' : undefined}
+                  >
+                    {t(`nav.${item.key}`)}
+                  </Link>
+                );
+              })}
+            </nav>
+          )}
 
           <div className="ms-auto flex items-center gap-1">
-            <Link href={resolvedPath as never} locale={alternateLocale} className="state-layer rounded-full px-3 py-2 text-label-large text-on-surface-variant hover:text-on-surface" aria-label={alternateLabel}>
-              {alternateLabel}
-            </Link>
-            <button
-              type="button"
-              onClick={() => setTheme(nextTheme)}
-              className="state-layer grid size-10 place-items-center rounded-full text-on-surface-variant hover:text-on-surface"
-              aria-label={t('theme.toggle')}
-              title={theme === 'dark' ? t('theme.light') : t('theme.dark')}
-            >
-              {theme === 'dark' ? <Sun className="size-5" aria-hidden="true" /> : <Moon className="size-5" aria-hidden="true" />}
-            </button>
-            <Link href="/login" className="hidden md:inline-flex">
-              <Button size="sm" variant="outlined">{t('nav.login')}</Button>
-            </Link>
-            <button
-              type="button"
-              className="state-layer grid size-11 place-items-center rounded-full text-on-surface xl:hidden"
-              title={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
-              onClick={() => setMenuOpen((open) => !open)}
-              aria-expanded={menuOpen}
-              aria-controls="mobile-navigation"
-              aria-label={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
-            >
-              {menuOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
-            </button>
+            {isAuthenticated ? (
+              <Button type="button" size="sm" variant="outlined" onClick={handleLogout}>{t('nav.logout')}</Button>
+            ) : (
+              <>
+                <Link href={resolvedPath as never} locale={alternateLocale} className="state-layer rounded-full px-3 py-2 text-label-large text-on-surface-variant hover:text-on-surface" aria-label={alternateLabel}>
+                  {alternateLabel}
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setTheme(nextTheme)}
+                  className="state-layer grid size-10 place-items-center rounded-full text-on-surface-variant hover:text-on-surface"
+                  aria-label={t('theme.toggle')}
+                  title={theme === 'dark' ? t('theme.light') : t('theme.dark')}
+                >
+                  {theme === 'dark' ? <Sun className="size-5" aria-hidden="true" /> : <Moon className="size-5" aria-hidden="true" />}
+                </button>
+                <Link href="/login" className="hidden md:inline-flex">
+                  <Button size="sm" variant="outlined">{t('nav.login')}</Button>
+                </Link>
+                <button
+                  type="button"
+                  className="state-layer grid size-11 place-items-center rounded-full text-on-surface xl:hidden"
+                  title={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
+                  onClick={() => setMenuOpen((open) => !open)}
+                  aria-expanded={menuOpen}
+                  aria-controls="mobile-navigation"
+                  aria-label={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
+                >
+                  {menuOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
+                </button>
+              </>
+            )}
           </div>
         </div>
 
-        {menuOpen && (
+        {menuOpen && !isAuthenticated && (
           <>
             <button
               type="button"
