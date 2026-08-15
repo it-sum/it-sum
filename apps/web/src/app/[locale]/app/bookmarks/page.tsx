@@ -27,7 +27,7 @@ export default async function BookmarksPage({ params }: { params: Promise<{ loca
               <Card key={resource.id} className="flex flex-col p-5">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <div className="grid size-11 place-items-center rounded-xl bg-primary-container text-on-primary-container">
+                    <div className="grid size-11 place-items-center rounded-[15px] bg-primary-container text-on-primary-container">
                       {isVideo ? <PlayCircle className="size-5" aria-hidden="true" /> : <FileText className="size-5" aria-hidden="true" />}
                     </div>
                     <div>

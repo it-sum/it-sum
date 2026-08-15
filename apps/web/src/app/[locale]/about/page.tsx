@@ -41,7 +41,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {items.map(({ title, body, icon: Icon, number }) => (
               <Card key={title} variant="outlined" interactive className="group h-full">
-                <CardHeader className="flex-row items-start justify-between gap-4 p-6 pb-3"><div className="grid size-11 place-items-center rounded-2xl bg-primary-container text-on-primary-container"><Icon className="size-5" aria-hidden="true" /></div><span className="text-label-medium text-on-surface-variant" data-numeric="true">{number}</span></CardHeader>
+                <CardHeader className="flex-row items-start justify-between gap-4 p-6 pb-3"><div className="grid size-11 place-items-center rounded-[15px] bg-primary-container text-on-primary-container"><Icon className="size-5" aria-hidden="true" /></div><span className="text-label-medium text-on-surface-variant" data-numeric="true">{number}</span></CardHeader>
                 <CardBody className="p-6 pt-2"><CardTitle className="text-title-large">{title}</CardTitle><p className="mt-3 text-body-large text-on-surface-variant">{body}</p><ArrowUpRight className="mt-6 size-5 text-primary transition-transform duration-200 ease-standard group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" /></CardBody>
               </Card>
             ))}

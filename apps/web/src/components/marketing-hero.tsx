@@ -36,9 +36,9 @@ export function MarketingHero({
           </p>
         </div>
 
-        <div className="relative overflow-hidden rounded-[1.75rem] border border-on-primary/20 bg-on-primary/10 p-6 backdrop-blur-sm sm:p-7">
+        <div className="relative overflow-hidden rounded-[15px] border border-on-primary/20 bg-on-primary/10 p-6 backdrop-blur-sm sm:p-7">
           <div className="flex items-start justify-between gap-4">
-            <div className="grid size-11 place-items-center rounded-2xl bg-tertiary text-on-tertiary shadow-level1">
+            <div className="grid size-11 place-items-center rounded-[15px] bg-tertiary text-on-tertiary shadow-level1">
               <Sparkles className="size-5" aria-hidden="true" />
             </div>
             <ArrowUpRight className="size-5 text-on-primary/60" aria-hidden="true" />

@@ -34,6 +34,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   const nextTheme = theme === 'dark' ? 'light' : 'dark';
   const themeLabel = theme === 'dark' ? t('theme.light') : t('theme.dark');
   const isAuthenticated = session !== null;
+  const isWorkspace = resolvedPath === '/app' || resolvedPath.startsWith('/app/') || resolvedPath === '/student' || resolvedPath.startsWith('/student/') || resolvedPath === '/admin' || resolvedPath.startsWith('/admin/');
 
   useEffect(() => {
     setSession(getDemoSession());
@@ -68,15 +69,15 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-dvh bg-background text-on-background">
-      <a href="#main-content" className="sr-only-focusable fixed start-4 top-4 z-50 rounded-md bg-primary px-4 py-2 text-on-primary">
+      <a href="#main-content" className="sr-only-focusable fixed start-4 top-4 z-50 rounded-[15px] bg-primary px-4 py-2 text-on-primary">
         {t('nav.skipToContent')}
       </a>
 
-      <header className="sticky top-0 z-40 px-3 pt-3 sm:px-5 lg:px-6">
+      {!isWorkspace && <header className="sticky top-0 z-40 px-3 pt-3 sm:px-5 lg:px-6">
         <div className="mx-auto max-w-[var(--it-sum-content-max-width)]">
-          <div className="flex min-h-16 items-center gap-2 rounded-2xl border border-outline-variant/60 bg-surface/90 px-3 shadow-level2 backdrop-blur-xl sm:gap-3 sm:px-4">
-            <Link href="/" aria-label={t('meta.siteName')} className="group flex shrink-0 items-center gap-2 rounded-xl px-1.5 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-              <span className="grid size-9 place-items-center overflow-hidden rounded-xl bg-primary-container shadow-level1 transition-transform duration-200 group-hover:-rotate-3 sm:size-10">
+          <div className="glass-panel flex min-h-16 items-center gap-2 rounded-[15px] px-3 sm:gap-3 sm:px-4">
+            <Link href="/" aria-label={t('meta.siteName')} className="group flex shrink-0 items-center gap-2 rounded-[15px] px-1.5 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+              <span className="glass-control grid size-9 place-items-center overflow-hidden rounded-[15px] p-0 shadow-level1 transition-transform duration-200 group-hover:-rotate-3 sm:size-10">
                 <Image src="/brand/it-sum-logo.webp" alt="" width={40} height={40} className="size-full object-cover" priority />
               </span>
               <span className="hidden text-title-medium tracking-tight text-on-surface sm:inline">IT<span className="text-primary">-SUM</span></span>
@@ -91,7 +92,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
                   <Link
                     key={item.key}
                     href={item.href}
-                    className={`relative rounded-xl px-3 py-2 text-label-large transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary 2xl:px-3.5 ${active ? 'bg-primary-container text-on-primary-container' : 'text-on-surface-variant hover:bg-surface-high hover:text-on-surface'}`}
+                    className={`state-layer relative rounded-[15px] border border-transparent px-3 py-2 text-label-large transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary 2xl:px-3.5 ${active ? 'bg-primary-container text-on-primary-container' : 'text-on-surface-variant hover:bg-surface-high hover:text-on-surface'}`}
                     aria-current={active ? 'page' : undefined}
                   >
                     {t(`nav.${item.key}`)}
@@ -102,13 +103,13 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
 
             <div className="ms-auto flex items-center gap-1.5">
               <Badge tone="success" className="hidden rounded-full px-2.5 py-1 text-label-small xl:inline-flex">Open source</Badge>
-              <Link href={resolvedPath as never} locale={alternateLocale} className="rounded-xl px-2.5 py-2 text-label-large text-on-surface-variant transition-colors hover:bg-surface-high hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-label={alternateLabel}>
+              <Link href={resolvedPath as never} locale={alternateLocale} className="glass-control rounded-[15px] px-2.5 py-2 text-label-large text-on-surface-variant transition-colors hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-label={alternateLabel}>
                 {alternateLabel}
               </Link>
               <button
                 type="button"
                 onClick={() => setTheme(nextTheme)}
-                className="grid size-10 place-items-center rounded-xl text-on-surface-variant transition-colors hover:bg-surface-high hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="glass-control grid size-10 place-items-center rounded-[15px] text-on-surface-variant transition-colors hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 aria-label={t('theme.toggle')}
                 title={themeLabel}
               >
@@ -123,7 +124,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
               )}
               <button
                 type="button"
-                className="grid size-10 place-items-center rounded-xl text-on-surface transition-colors hover:bg-surface-high focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:hidden"
+                className="glass-control grid size-10 place-items-center rounded-[15px] text-on-surface transition-colors hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:hidden"
                 title={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
                 onClick={() => setMenuOpen((open) => !open)}
                 aria-expanded={menuOpen}
@@ -138,7 +139,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
           {menuOpen && !isAuthenticated && (
             <>
               <button type="button" aria-label={t('nav.closeMenu')} className="fixed inset-0 top-24 z-30 bg-scrim/25 lg:hidden" onClick={() => setMenuOpen(false)} />
-              <nav id="mobile-navigation" aria-label={t('nav.mainNavigation')} className="relative z-40 mt-2 rounded-2xl border border-outline-variant/60 bg-surface p-2 shadow-level3 lg:hidden">
+              <nav id="mobile-navigation" aria-label={t('nav.mainNavigation')} className="glass-panel relative z-40 mt-2 rounded-[15px] p-2 lg:hidden">
                 <div className="flex flex-col gap-1">
                   {PUBLIC_NAV.map((item) => {
                     const active = item.href === '/' ? resolvedPath === '/' : resolvedPath.startsWith(item.href);
@@ -148,13 +149,13 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
                         href={item.href}
                         onClick={() => setMenuOpen(false)}
                         aria-current={active ? 'page' : undefined}
-                        className={`rounded-xl px-4 py-3 text-title-small transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${active ? 'bg-primary-container text-on-primary-container' : 'text-on-surface hover:bg-surface-high'}`}
+                        className={`state-layer rounded-[15px] border border-transparent px-4 py-3 text-title-small transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${active ? 'bg-primary-container text-on-primary-container' : 'text-on-surface hover:bg-surface-high'}`}
                       >
                         {t(`nav.${item.key}`)}
                       </Link>
                     );
                   })}
-                  <Link href="/login" onClick={() => setMenuOpen(false)} className="mt-1 rounded-xl bg-primary px-4 py-3 text-center text-label-large text-on-primary shadow-level1 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                  <Link href="/login" onClick={() => setMenuOpen(false)} className="mt-1 rounded-[15px] border border-primary/20 bg-primary px-4 py-3 text-center text-label-large text-on-primary shadow-level1 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
                     {t('nav.login')}
                   </Link>
                 </div>
@@ -162,15 +163,15 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
             </>
           )}
         </div>
-      </header>
+      </header>}
 
       <main id="main-content" tabIndex={-1}>{children}</main>
 
-      <footer className="mt-20 border-t border-outline-variant/60 bg-surface-low">
+      {!isWorkspace && <footer className="glass-panel mt-20 rounded-none border-x-0 border-b-0">
         <div className="mx-auto grid max-w-[var(--it-sum-content-max-width)] gap-8 px-4 py-10 sm:px-6 md:grid-cols-[1.3fr_1fr_1fr] lg:px-8">
           <div>
             <div className="flex items-center gap-2">
-              <Image src="/brand/it-sum-logo.webp" alt="" width={36} height={36} className="size-9 rounded-xl object-cover" />
+              <Image src="/brand/it-sum-logo.webp" alt="" width={36} height={36} className="size-9 rounded-[15px] object-cover" />
               <span className="text-title-medium text-on-surface">IT<span className="text-primary">-SUM</span></span>
             </div>
             <p className="mt-3 max-w-sm text-body-medium text-on-surface-variant">{t('meta.description')}</p>
@@ -195,7 +196,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
           </div>
         </div>
         <div className="border-t border-outline-variant/60 px-4 py-4 text-center text-body-small text-on-surface-variant">{t('footer.rights')}</div>
-      </footer>
+      </footer>}
     </div>
   );
 }

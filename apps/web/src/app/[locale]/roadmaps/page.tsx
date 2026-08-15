@@ -41,7 +41,7 @@ export default async function RoadmapsPage({ params }: { params: Promise<{ local
               <div className="relative flex h-44 items-end overflow-hidden bg-primary-container p-5 text-on-primary-container">
                 <div className="pointer-events-none absolute -end-8 -top-14 size-48 rounded-full border-[28px] border-current opacity-10" />
                 <div className="relative flex w-full items-end justify-between gap-4">
-                  <div className="grid size-12 place-items-center rounded-2xl bg-primary text-on-primary shadow-level1"><Route className="size-6" aria-hidden="true" /></div>
+                  <div className="grid size-12 place-items-center rounded-[15px] bg-primary text-on-primary shadow-level1"><Route className="size-6" aria-hidden="true" /></div>
                   <span className="text-display-small opacity-30" data-numeric="true">{String(index + 1).padStart(2, '0')}</span>
                 </div>
               </div>
@@ -58,7 +58,7 @@ export default async function RoadmapsPage({ params }: { params: Promise<{ local
           ))}
         </div>
 
-        <div className="mt-8 flex items-start gap-3 rounded-2xl border border-outline-variant/60 bg-surface-container-low px-5 py-4 text-on-surface-variant"><Map className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" /><p className="text-body-medium">{t('roadmaps.info')}</p></div>
+        <div className="mt-8 flex items-start gap-3 rounded-[15px] border border-outline-variant/60 bg-surface-container-low px-5 py-4 text-on-surface-variant"><Map className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" /><p className="text-body-medium">{t('roadmaps.info')}</p></div>
       </div>
     </>
   );

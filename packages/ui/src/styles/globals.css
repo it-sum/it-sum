@@ -58,11 +58,30 @@
   --color-inverse-primary: var(--md-sys-color-inverse-primary);
   --color-scrim: var(--md-sys-color-scrim);
 
+  /* shadcn-compatible semantic aliases */
+  --color-border: var(--md-sys-color-outline-variant);
+  --color-input: var(--md-sys-color-outline);
+  --color-ring: var(--md-sys-color-primary);
+  --color-card: var(--md-sys-color-surface-container);
+  --color-card-foreground: var(--md-sys-color-on-surface);
+  --color-popover: var(--md-sys-color-surface-container-high);
+  --color-popover-foreground: var(--md-sys-color-on-surface);
+  --color-muted: var(--md-sys-color-surface-container);
+  --color-muted-foreground: var(--md-sys-color-on-surface-variant);
+  --color-accent: var(--md-sys-color-secondary-container);
+  --color-accent-foreground: var(--md-sys-color-on-secondary-container);
+  --color-destructive: var(--md-sys-color-error);
+  --color-destructive-foreground: var(--md-sys-color-on-error);
+  --radius: 15px;
+
   --radius-xs: var(--md-sys-shape-corner-extra-small);
   --radius-sm: var(--md-sys-shape-corner-small);
   --radius-md: var(--md-sys-shape-corner-medium);
   --radius-lg: var(--md-sys-shape-corner-large);
   --radius-xl: var(--md-sys-shape-corner-extra-large);
+  --radius-2xl: 15px;
+  --radius-3xl: 15px;
+  --radius-4xl: 15px;
   --radius-full: var(--md-sys-shape-corner-full);
 
   --shadow-level1: var(--md-sys-elevation-level1);
@@ -180,6 +199,14 @@
 }
 
 /** Shared glass surfaces: consistent depth without opaque blocks. */
+@utility glass-panel {
+  background-color: color-mix(in srgb, var(--md-sys-color-surface) 64%, transparent);
+  border: 1px solid color-mix(in srgb, var(--md-sys-color-outline-variant) 68%, transparent);
+  box-shadow: 0 18px 55px rgb(15 23 42 / 0.1), inset 0 1px 0 rgb(255 255 255 / 0.16);
+  -webkit-backdrop-filter: blur(22px) saturate(145%);
+  backdrop-filter: blur(22px) saturate(145%);
+}
+
 @utility glass-surface {
   background-color: color-mix(in srgb, var(--md-sys-color-surface) 72%, transparent);
   border: 1px solid color-mix(in srgb, var(--md-sys-color-outline-variant) 62%, transparent);
@@ -205,6 +232,7 @@
 @supports not ((backdrop-filter: blur(1px))) {
   .glass-surface,
   .glass-soft,
+  .glass-panel,
   .glass-control {
     background-color: var(--md-sys-color-surface);
   }
@@ -268,6 +296,10 @@
 
   body {
     background-color: var(--md-sys-color-background);
+    background-image:
+      radial-gradient(circle at 8% 0%, color-mix(in srgb, var(--md-sys-color-primary) 12%, transparent), transparent 28rem),
+      radial-gradient(circle at 92% 12%, color-mix(in srgb, var(--md-sys-color-tertiary) 10%, transparent), transparent 24rem);
+    background-attachment: fixed;
     color: var(--md-sys-color-on-background);
     font-family: var(--font-latin);
     min-height: 100dvh;
@@ -309,6 +341,13 @@
   iframe {
     display: block;
     max-width: 100%;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
   }
 
   /* Selection uses the brand rather than the browser default blue. */

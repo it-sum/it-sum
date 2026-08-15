@@ -24,7 +24,7 @@ export default async function SettingsPage({ params }: { params: Promise<{ local
           <div className="mt-5 space-y-5">
             <TextField label={t('settings.name')} name="name" defaultValue={account.name} startIcon={<UserRound />} />
             <TextField label={t('settings.email')} name="email" type="email" defaultValue={account.email} startIcon={<Mail />} readOnly />
-            <div className="flex items-center gap-2 rounded-xl bg-surface-container-low p-3 text-sm text-on-surface-variant"><ShieldCheck className="size-5 text-primary" aria-hidden="true" />{t('settings.verified')}</div>
+            <div className="flex items-center gap-2 rounded-[15px] bg-surface-container-low p-3 text-sm text-on-surface-variant"><ShieldCheck className="size-5 text-primary" aria-hidden="true" />{t('settings.verified')}</div>
           </div>
         </Card>
 
@@ -35,7 +35,7 @@ export default async function SettingsPage({ params }: { params: Promise<{ local
           </div>
           <div className="mt-5 space-y-5">
             <SelectField label={t('settings.language')} name="language" defaultValue={locale} options={[{ value: 'ar', label: 'العربية' }, { value: 'en', label: 'English' }]} />
-            <div className="space-y-3 rounded-xl border border-outline-variant/60 p-4">
+            <div className="space-y-3 rounded-[15px] border border-outline-variant/60 p-4">
               <div className="flex items-center gap-2 text-sm font-semibold text-on-surface"><Bell className="size-4 text-primary" aria-hidden="true" />{t('settings.notificationsTitle')}</div>
               <CheckboxField label={t('settings.weeklyReminder')} name="weeklyReminder" defaultChecked />
               <CheckboxField label={t('settings.newResources')} name="newResources" defaultChecked />

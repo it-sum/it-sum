@@ -89,7 +89,7 @@ export default async function AppDashboardPage({
 
           <Card
             variant="elevated"
-            className="relative overflow-hidden rounded-[1.75rem] border border-white/15 bg-white/[0.09] p-5 text-white shadow-2xl backdrop-blur sm:p-6"
+            className="relative overflow-hidden rounded-[15px] border border-white/15 bg-white/[0.09] p-5 text-white shadow-2xl backdrop-blur sm:p-6"
           >
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -100,7 +100,7 @@ export default async function AppDashboardPage({
                   {t("app.focusTitle")}
                 </h2>
               </div>
-              <div className="grid size-11 place-items-center rounded-2xl bg-[#2dc9b4]/15 text-[#7ee7d8]">
+              <div className="grid size-11 place-items-center rounded-[15px] bg-[#2dc9b4]/15 text-[#7ee7d8]">
                 <Target className="size-5" />
               </div>
             </div>
@@ -128,9 +128,9 @@ export default async function AppDashboardPage({
                 </p>
               </div>
             </div>
-            <div className="mt-7 rounded-2xl border border-white/10 bg-black/10 p-4">
+            <div className="mt-7 rounded-[15px] border border-white/10 bg-black/10 p-4">
               <div className="flex items-center gap-3">
-                <div className="grid size-10 place-items-center rounded-xl bg-white/10 text-[#a9e9de]">
+                <div className="grid size-10 place-items-center rounded-[15px] bg-white/10 text-[#a9e9de]">
                   <Zap className="size-5" />
                 </div>
                 <div className="min-w-0 flex-1">
@@ -195,11 +195,11 @@ export default async function AppDashboardPage({
                   key={item.id}
                   variant="elevated"
                   interactive
-                  className="group overflow-hidden rounded-2xl border border-outline-variant/50 p-0"
+                  className="group overflow-hidden rounded-[15px] border border-outline-variant/50 p-0"
                 >
                   <div className="flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:p-6">
                     <div
-                      className={`grid size-14 shrink-0 place-items-center rounded-2xl ${index === 0 ? "bg-primary-container text-on-primary-container" : index === 1 ? "bg-secondary-container text-on-secondary-container" : "bg-reward-container text-on-reward-container"}`}
+                      className={`grid size-14 shrink-0 place-items-center rounded-[15px] ${index === 0 ? "bg-primary-container text-on-primary-container" : index === 1 ? "bg-secondary-container text-on-secondary-container" : "bg-reward-container text-on-reward-container"}`}
                     >
                       {item.type === "video" ? (
                         <Play className="size-6" />
@@ -264,7 +264,7 @@ export default async function AppDashboardPage({
 
           <Card
             variant="filled"
-            className="h-fit rounded-3xl bg-[#eef8f7] p-6 dark:bg-surface-container"
+            className="h-fit rounded-[15px] glass-panel p-6"
           >
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -294,9 +294,9 @@ export default async function AppDashboardPage({
                 value="3 / 5"
               />
             </div>
-            <div className="mt-8 rounded-2xl bg-white/80 p-4 dark:bg-surface-low">
+            <div className="mt-8 glass-soft rounded-[15px] p-4">
               <div className="flex items-center gap-3">
-                <div className="grid size-10 place-items-center rounded-xl bg-primary-container text-on-primary-container">
+                <div className="grid size-10 place-items-center rounded-[15px] bg-primary-container text-on-primary-container">
                   <LayoutGrid className="size-5" />
                 </div>
                 <p className="text-sm font-medium leading-6 text-on-surface">
@@ -327,10 +327,10 @@ export default async function AppDashboardPage({
                 key={quiz.id}
                 variant="outlined"
                 interactive
-                className="flex h-full flex-col rounded-2xl p-5"
+                className="flex h-full flex-col rounded-[15px] p-5"
               >
                 <div className="flex items-start justify-between gap-3">
-                  <div className="grid size-11 place-items-center rounded-xl bg-reward-container text-on-reward-container">
+                  <div className="grid size-11 place-items-center rounded-[15px] bg-reward-container text-on-reward-container">
                     <Trophy className="size-5" />
                   </div>
                   <Badge tone="reward">{quiz.examPhase}</Badge>
@@ -355,9 +355,9 @@ export default async function AppDashboardPage({
         </section>
 
         <section className="pb-14 lg:pb-20">
-          <div className="flex flex-col gap-6 overflow-hidden rounded-3xl bg-[#dff8f3] p-6 dark:bg-primary-container sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <div className="flex flex-col gap-6 overflow-hidden rounded-[15px] glass-panel p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
             <div className="flex items-start gap-4">
-              <div className="grid size-12 shrink-0 place-items-center rounded-2xl bg-[#10253d] text-[#a9e9de]">
+              <div className="grid size-12 shrink-0 place-items-center rounded-[15px] bg-primary text-on-primary">
                 <Sparkles className="size-5" />
               </div>
               <div>
@@ -375,7 +375,7 @@ export default async function AppDashboardPage({
             <LinkButton
               href={`/${locale}/roadmaps`}
               variant="filled"
-              className="shrink-0 bg-[#10253d] text-white hover:bg-[#1b3858]"
+              className="shrink-0"
             >
               {t("app.planAction")} <ArrowUpRight className="ms-2 size-4" />
             </LinkButton>
@@ -408,10 +408,10 @@ function Metric({
   return (
     <Card
       variant="elevated"
-      className="flex items-center gap-4 rounded-2xl border border-outline-variant/40 p-4 sm:p-5"
+      className="flex items-center gap-4 rounded-[15px] border border-outline-variant/40 p-4 sm:p-5"
     >
       <div
-        className={`grid size-11 shrink-0 place-items-center rounded-2xl ${toneClasses[tone]}`}
+        className={`grid size-11 shrink-0 place-items-center rounded-[15px] ${toneClasses[tone]}`}
       >
         {icon}
       </div>
@@ -442,7 +442,7 @@ function FocusRow({
 }) {
   return (
     <div className="flex items-center gap-3">
-      <div className="grid size-9 place-items-center rounded-xl bg-white text-primary dark:bg-surface-low">
+      <div className="grid size-9 place-items-center rounded-[15px] bg-white text-primary dark:bg-surface-low">
         {icon}
       </div>
       <span className="flex-1 text-sm text-on-surface-variant">{label}</span>

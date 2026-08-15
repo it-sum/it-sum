@@ -77,7 +77,7 @@ export default async function DepartmentsPage({ params }: { params: Promise<{ lo
                   className={`group ${index === 0 ? 'border-2 border-primary/30' : ''}`}
                 >
                   <CardBody className="flex items-center gap-3 p-4">
-                    <div className={`grid size-11 shrink-0 place-items-center rounded-2xl ${index === 0 ? 'bg-primary text-on-primary' : 'bg-primary-container text-on-primary-container'}`}>
+                    <div className={`grid size-11 shrink-0 place-items-center rounded-[15px] ${index === 0 ? 'bg-primary text-on-primary' : 'bg-primary-container text-on-primary-container'}`}>
                       <FolderTree className="size-5" aria-hidden="true" />
                     </div>
                     <div className="min-w-0 flex-1">
@@ -106,7 +106,7 @@ export default async function DepartmentsPage({ params }: { params: Promise<{ lo
                 <Card key={batch.id} variant="outlined" className="overflow-hidden transition-colors hover:border-primary/60">
                   <CardHeader className="flex-row items-center justify-between gap-3 bg-surface-container-low">
                     <div className="flex items-center gap-3">
-                      <div className="grid size-10 place-items-center rounded-2xl bg-secondary-container text-on-secondary-container text-label-large" data-numeric="true">{batch.level}</div>
+                      <div className="grid size-10 place-items-center rounded-[15px] bg-secondary-container text-on-secondary-container text-label-large" data-numeric="true">{batch.level}</div>
                       <div>
                         <CardTitle>{batch.name[language]}</CardTitle>
                         <p className="mt-1 text-body-small text-on-surface-variant">{t('departments.coursesCount', { count: batch.semesters.reduce((sum, semester) => sum + semester.courses.length, 0) })}</p>
@@ -116,10 +116,10 @@ export default async function DepartmentsPage({ params }: { params: Promise<{ lo
                   </CardHeader>
                   <CardBody className="space-y-3 p-4">
                     {batch.resourceCount === 0 ? (
-                      <p className="rounded-2xl bg-surface-container px-4 py-4 text-body-medium text-on-surface-variant">{t('departments.comingSoonReason')}</p>
+                      <p className="rounded-[15px] bg-surface-container px-4 py-4 text-body-medium text-on-surface-variant">{t('departments.comingSoonReason')}</p>
                     ) : (
                       batch.semesters.map((semester) => (
-                        <div key={semester.id} className="rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4">
+                        <div key={semester.id} className="rounded-[15px] border border-outline-variant/50 bg-surface-container-lowest p-4">
                           <div className="flex flex-wrap items-center justify-between gap-2">
                             <div>
                               <h3 className="text-title-small text-on-surface">{semester.name[language]}</h3>
@@ -130,8 +130,8 @@ export default async function DepartmentsPage({ params }: { params: Promise<{ lo
                           {semester.courses.length > 0 && (
                             <div className="mt-4 grid gap-2 sm:grid-cols-2">
                               {semester.courses.map((course) => (
-                                <Link key={course.id} href={`/resources?course=${course.id}` as never} className="state-layer group flex items-center gap-3 rounded-2xl border border-outline-variant/60 bg-surface p-3 transition-colors hover:border-primary">
-                                  <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-primary-container text-on-primary-container"><BookOpen className="size-4" aria-hidden="true" /></div>
+                                <Link key={course.id} href={`/resources?course=${course.id}` as never} className="state-layer group flex items-center gap-3 rounded-[15px] border border-outline-variant/60 bg-surface p-3 transition-colors hover:border-primary">
+                                  <div className="grid size-9 shrink-0 place-items-center rounded-[15px] bg-primary-container text-on-primary-container"><BookOpen className="size-4" aria-hidden="true" /></div>
                                   <div className="min-w-0 flex-1"><p className="truncate text-title-small text-on-surface">{course.name[language]}</p><p className="mt-0.5 text-body-small text-on-surface-variant">{course.code} · {course.resourceCount} {t('resources.pages')}</p></div>
                                   <ArrowUpRight className="size-4 shrink-0 text-primary transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
                                 </Link>

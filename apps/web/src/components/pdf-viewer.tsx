@@ -100,7 +100,7 @@ export function PdfViewer({ resourceId, url, title, pageCount, textQuality = 'un
       </div>
       <div className="flex min-h-[520px] items-center justify-center overflow-auto bg-surface-container px-4 py-6">
         {loading && <div className="absolute text-sm text-on-surface-variant">Loading PDF…</div>}
-        {error ? <div className="max-w-md text-center text-sm text-error">{error}</div> : <canvas ref={canvasRef} className="max-w-full rounded-md bg-white shadow-md" aria-label={title} />}
+        {error ? <div className="max-w-md text-center text-sm text-error">{error}</div> : <canvas ref={canvasRef} className="max-w-full rounded-[15px] bg-white shadow-md" aria-label={title} />}
       </div>
       <div className="flex flex-wrap items-center justify-between gap-3 border-t border-outline-variant px-4 py-3">
         <div className="min-w-40 flex-1"><ProgressBar value={pages ? (page / pages) * 100 : 0} label={`Page ${page} of ${pages || 0}`} /></div>

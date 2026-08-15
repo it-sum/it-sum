@@ -28,7 +28,7 @@ export function DashboardSidebar() {
 
   return (
     <aside className="w-full shrink-0 lg:sticky lg:top-24 lg:w-60 lg:self-start" aria-label={t('dashboardSidebar.label')}>
-      <div className="rounded-2xl border border-outline-variant/70 bg-surface-container-low p-2 shadow-level1">
+      <div className="glass-panel rounded-[15px] p-2">
         <div className="hidden px-3 pb-3 pt-2 lg:block">
           <p className="text-label-medium uppercase tracking-[0.12em] text-primary">IT-SUM</p>
           <p className="mt-1 text-body-small text-on-surface-variant">{t('dashboardSidebar.title')}</p>
@@ -41,7 +41,7 @@ export function DashboardSidebar() {
                 key={key}
                 href={href as never}
                 aria-current={active ? 'page' : undefined}
-                className={`flex min-w-max items-center gap-3 rounded-xl px-3 py-2.5 text-label-large transition-colors ${active ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'}`}
+                className={`state-layer flex min-w-max items-center gap-3 rounded-[15px] border border-transparent px-3 py-2.5 text-label-large transition-colors ${active ? 'border-secondary/20 bg-secondary-container/80 text-on-secondary-container shadow-level1' : 'text-on-surface-variant hover:border-outline-variant/60 hover:bg-surface-high/70 hover:text-on-surface'}`}
               >
                 <Icon className="size-5" aria-hidden="true" />
                 <span>{t(`dashboardSidebar.${key}`)}</span>

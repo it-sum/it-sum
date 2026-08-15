@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { BookOpen, CheckCircle2, FileText, Filter, PlayCircle, Search, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import type { LibraryFacets, ResourceSummary } from '@it-sum/shared';
-import { Badge, Button, Card, CardBody, EmptyState, ProgressRing, TextField } from '@it-sum/ui';
+import { Badge, Button, Card, CardBody, EmptyState, ProgressRing, SelectField, TextField } from '@it-sum/ui';
 import { Link } from '@/i18n/routing';
 
 export function ResourcesBrowser({ resources, facets }: { resources: ResourceSummary[]; facets: LibraryFacets }) {
@@ -34,7 +34,7 @@ export function ResourcesBrowser({ resources, facets }: { resources: ResourceSum
 
   return (
     <div className="mx-auto max-w-[var(--it-sum-content-max-width)] px-4 py-12 sm:px-6 md:py-20 lg:px-8">
-      <div className="rounded-[1.75rem] bg-surface-container-low p-5 sm:p-7">
+      <div className="glass-panel rounded-[15px] p-5 sm:p-7">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-label-large text-primary">01 / LIBRARY INDEX</p>
@@ -55,9 +55,9 @@ export function ResourcesBrowser({ resources, facets }: { resources: ResourceSum
         </div>
 
         {showFilters && (
-          <div id="resource-filters" className="mt-4 grid gap-4 rounded-2xl border border-outline-variant/60 bg-surface p-4 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_auto]">
-            <label className="flex flex-col gap-1.5"><span className="text-label-large text-on-surface">{t('resources.materialKind')}</span><select value={kind} onChange={(event) => setKind(event.target.value)} className="rounded-xl border border-outline bg-surface-lowest px-3 py-2.5 text-body-medium text-on-surface"><option value="all">{t('common.all')}</option>{facets.materialKinds.map((facet) => <option key={facet.value} value={facet.value}>{facet.label} ({facet.count})</option>)}</select></label>
-            <label className="flex flex-col gap-1.5"><span className="text-label-large text-on-surface">{t('resources.examPhase')}</span><select value={phase} onChange={(event) => setPhase(event.target.value)} className="rounded-xl border border-outline bg-surface-lowest px-3 py-2.5 text-body-medium text-on-surface"><option value="all">{t('common.all')}</option>{facets.examPhases.map((facet) => <option key={facet.value} value={facet.value}>{facet.label} ({facet.count})</option>)}</select></label>
+          <div id="resource-filters" className="glass-soft mt-4 grid gap-4 rounded-[15px] p-4 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_auto]">
+            <SelectField label={t('resources.materialKind')} value={kind} onChange={(event) => setKind(event.target.value)} options={[{ value: 'all', label: t('common.all') }, ...facets.materialKinds.map((facet) => ({ value: facet.value, label: `${facet.label} (${facet.count})` }))]} />
+            <SelectField label={t('resources.examPhase')} value={phase} onChange={(event) => setPhase(event.target.value)} options={[{ value: 'all', label: t('common.all') }, ...facets.examPhases.map((facet) => ({ value: facet.value, label: `${facet.label} (${facet.count})` }))]} />
             <Button variant="text" startIcon={<X />} onClick={clearFilters}>{t('resources.clearFilters')}</Button>
           </div>
         )}
@@ -76,7 +76,7 @@ export function ResourcesBrowser({ resources, facets }: { resources: ResourceSum
             <div className={`relative flex h-40 items-end overflow-hidden p-4 ${resource.type === 'video' ? 'bg-secondary-container text-on-secondary-container' : 'bg-primary-container text-on-primary-container'}`}>
               <div className="pointer-events-none absolute -end-7 -top-8 size-32 rounded-full border-[18px] border-current opacity-10" />
               <Icon className="relative size-12 transition-transform duration-200 ease-standard group-hover:scale-105" aria-hidden="true" />
-              <span className="ms-auto rounded-full bg-surface/75 px-3 py-1 text-label-small text-on-surface backdrop-blur-sm">{resource.type === 'video' ? t('resources.watchVideo') : 'PDF'}</span>
+              <span className="glass-control ms-auto rounded-[15px] px-3 py-1 text-label-small text-on-surface">{resource.type === 'video' ? t('resources.watchVideo') : 'PDF'}</span>
             </div>
             <CardBody className="flex flex-1 flex-col p-5">
               <div className="flex items-start justify-between gap-2"><Badge tone={resource.type === 'video' ? 'info' : 'primary'}>{resource.type === 'video' ? t('resources.watchVideo') : 'PDF'}</Badge>{resource.progress?.completedAt != null && <CheckCircle2 className="size-5 text-tertiary" aria-label={t('resources.completed')} />}</div>

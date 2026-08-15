@@ -64,9 +64,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </div>
           </div>
 
-          <Card variant="elevated" className="relative overflow-hidden rounded-[2rem] border border-outline-variant/60 bg-surface-low p-2 shadow-level4">
+          <Card variant="elevated" className="relative overflow-hidden rounded-[15px] border border-outline-variant/60 glass-panel p-2 shadow-level4">
             <div className="pointer-events-none absolute -end-20 -top-20 size-56 rounded-full bg-primary-container/50 blur-3xl" />
-            <CardBody className="relative overflow-hidden rounded-[1.5rem] border border-outline-variant/50 bg-surface p-0">
+            <CardBody className="relative overflow-hidden rounded-[15px] border border-outline-variant/50 bg-surface p-0">
               <div className="flex items-center justify-between border-b border-outline-variant/60 px-5 py-5 sm:px-6">
                 <div>
                   <p className="text-label-medium uppercase tracking-[0.18em] text-primary">IT-SUM / 01</p>
@@ -87,8 +87,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
                 <div className="grid gap-3">
                   {mockResources.slice(0, 3).map((resource, index) => (
-                    <div key={resource.id} className="flex items-center gap-3 rounded-2xl border border-outline-variant/60 bg-surface-low p-3 transition-colors hover:border-primary/50 hover:bg-surface-high sm:gap-4">
-                      <div className={`grid size-11 shrink-0 place-items-center rounded-xl ${index === 0 ? 'bg-primary-container text-on-primary-container' : index === 1 ? 'bg-reward-container text-on-reward-container' : 'bg-secondary-container text-on-secondary-container'}`}>
+                    <div key={resource.id} className="flex items-center gap-3 rounded-[15px] border border-outline-variant/60 bg-surface-low p-3 transition-colors hover:border-primary/50 hover:bg-surface-high sm:gap-4">
+                      <div className={`grid size-11 shrink-0 place-items-center rounded-[15px] ${index === 0 ? 'bg-primary-container text-on-primary-container' : index === 1 ? 'bg-reward-container text-on-reward-container' : 'bg-secondary-container text-on-secondary-container'}`}>
                         {resource.type === 'video' ? <PlayCircle className="size-5" aria-hidden="true" /> : <BookOpen className="size-5" aria-hidden="true" />}
                       </div>
                       <div className="min-w-0 flex-1">
@@ -100,7 +100,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   ))}
                 </div>
 
-                <div className="grid grid-cols-2 gap-3 rounded-2xl bg-surface-container p-4">
+                <div className="grid grid-cols-2 gap-3 rounded-[15px] bg-surface-container p-4">
                   <div>
                     <p data-numeric="true" className="text-headline-small text-on-surface">4</p>
                     <p className="mt-1 text-body-small text-on-surface-variant">{t('app.metrics.streak')}</p>
@@ -120,7 +120,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="mx-auto grid max-w-[var(--it-sum-content-max-width)] grid-cols-2 divide-x divide-outline-variant/60 px-4 py-4 rtl:divide-x-reverse sm:px-6 md:grid-cols-4 lg:px-8">
           {stats.map(({ value, label, icon: Icon }) => (
             <div key={label} className="flex items-center gap-3 px-3 py-4 text-start sm:justify-center">
-              <span className="hidden size-10 place-items-center rounded-xl bg-primary-container text-on-primary-container sm:grid"><Icon className="size-5" aria-hidden="true" /></span>
+              <span className="hidden size-10 place-items-center rounded-[15px] bg-primary-container text-on-primary-container sm:grid"><Icon className="size-5" aria-hidden="true" /></span>
               <div>
                 <p data-numeric="true" className="text-headline-small text-on-surface">{value}</p>
                 <p className="mt-1 text-body-small text-on-surface-variant">{label}</p>
@@ -140,9 +140,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {features.map(({ title, body, icon: Icon, tone }, index) => (
-              <Card key={title} variant={index % 3 === 0 ? 'elevated' : 'outlined'} className="group h-full rounded-2xl transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-level2">
+              <Card key={title} variant={index % 3 === 0 ? 'elevated' : 'outlined'} className="group h-full rounded-[15px] transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-level2">
                 <CardHeader>
-                  <div className={`mb-2 grid size-11 place-items-center rounded-2xl ${tone}`}><Icon className="size-5" aria-hidden="true" /></div>
+                  <div className={`mb-2 grid size-11 place-items-center rounded-[15px] ${tone}`}><Icon className="size-5" aria-hidden="true" /></div>
                   <CardTitle>{title}</CardTitle>
                   <CardDescription className="pt-1 leading-relaxed">{body}</CardDescription>
                 </CardHeader>
@@ -154,9 +154,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <section className="bg-surface-low">
         <div className="mx-auto max-w-[var(--it-sum-content-max-width)] px-4 py-20 sm:px-6 md:py-28 lg:px-8">
-          <div className="grid gap-10 rounded-[2rem] bg-primary p-6 text-on-primary shadow-level3 sm:p-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:p-12">
+          <div className="grid gap-10 rounded-[15px] bg-primary p-6 text-on-primary shadow-level3 sm:p-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:p-12">
             <div>
-              <div className="grid size-12 place-items-center rounded-2xl bg-primary-container text-on-primary-container"><Route className="size-6" aria-hidden="true" /></div>
+              <div className="grid size-12 place-items-center rounded-[15px] bg-primary-container text-on-primary-container"><Route className="size-6" aria-hidden="true" /></div>
               <p className="mt-8 text-label-large uppercase tracking-[0.18em] text-on-primary/75">IT-SUM / 03</p>
               <h2 className="mt-3 text-headline-large sm:text-display-small">{t('home.ctaTitle')}</h2>
               <p className="mt-4 max-w-lg text-body-large leading-relaxed text-on-primary/80">{t('home.ctaBody')}</p>
@@ -164,7 +164,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </div>
             <div className="grid gap-3 sm:grid-cols-3">
               {studySteps.map(([number, title, body]) => (
-                <Card key={number} variant="filled" className="h-full rounded-2xl border border-on-primary/10 bg-on-primary/10 text-on-primary">
+                <Card key={number} variant="filled" className="h-full rounded-[15px] border border-on-primary/10 bg-on-primary/10 text-on-primary">
                   <CardBody className="p-5">
                     <div data-numeric="true" className="grid size-9 place-items-center rounded-full bg-reward text-label-large text-on-reward">{number}</div>
                     <h3 className="mt-6 text-title-medium">{title}</h3>
@@ -178,7 +178,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       <section className="mx-auto max-w-[var(--it-sum-content-max-width)] px-4 py-20 sm:px-6 md:py-24 lg:px-8">
-        <Card variant="outlined" className="relative overflow-hidden rounded-[2rem] bg-surface-container px-6 py-10 sm:px-10 sm:py-12 lg:px-14">
+        <Card variant="outlined" className="relative overflow-hidden rounded-[15px] glass-panel px-6 py-10 sm:px-10 sm:py-12 lg:px-14">
           <div className="pointer-events-none absolute -end-16 -top-24 size-64 rounded-full bg-secondary-container/50 blur-3xl" />
           <CardBody className="relative grid gap-10 p-0 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>

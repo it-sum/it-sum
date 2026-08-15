@@ -47,7 +47,7 @@ function AchievementCard({ badge, locale, earned = false, t }: { badge: (typeof 
   const language = locale === 'en' ? 'en' : 'ar';
   return (
     <Card variant={earned ? 'filled' : 'outlined'} className={`flex items-center gap-4 p-5 ${earned ? '' : 'opacity-80'}`}>
-      <div className={`grid size-14 shrink-0 place-items-center rounded-2xl ${earned ? 'bg-reward text-on-reward' : 'bg-surface-container-high text-on-surface-variant'}`}>
+      <div className={`grid size-14 shrink-0 place-items-center rounded-[15px] ${earned ? 'bg-reward text-on-reward' : 'bg-surface-container-high text-on-surface-variant'}`}>
         {earned ? <Icon className="size-7" aria-hidden="true" /> : <LockKeyhole className="size-6" aria-hidden="true" />}
       </div>
       <div className="min-w-0">

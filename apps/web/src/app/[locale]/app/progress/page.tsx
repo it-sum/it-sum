@@ -45,8 +45,8 @@ export default async function ProgressPage({ params }: { params: Promise<{ local
         <div className="mt-6 grid grid-cols-7 items-end gap-2 sm:gap-4">
           {WEEKLY_ACTIVITY.map((item) => (
             <div key={item.day} className="flex flex-col items-center gap-2">
-              <div className="flex h-32 w-full items-end justify-center rounded-lg bg-surface-container-low p-1">
-                <div className="w-full rounded-md bg-primary" style={{ height: `${Math.max(12, (item.minutes / 90) * 100)}%` }} aria-label={`${item.minutes} minutes`} />
+              <div className="flex h-32 w-full items-end justify-center rounded-[15px] bg-surface-container-low p-1">
+                <div className="w-full rounded-[15px] bg-primary" style={{ height: `${Math.max(12, (item.minutes / 90) * 100)}%` }} aria-label={`${item.minutes} minutes`} />
               </div>
               <span className="text-xs text-on-surface-variant">{t(`progress.days.${item.day}`)}</span>
             </div>
