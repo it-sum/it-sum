@@ -23,13 +23,13 @@ export type ButtonVariant =
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
-  filled: 'bg-primary text-on-primary shadow-none hover:bg-primary/90 hover:shadow-level1 active:scale-[0.98]',
-  tonal: 'bg-secondary-container text-on-secondary-container hover:bg-secondary-container/80 hover:shadow-level1 active:scale-[0.98]',
-  outlined: 'border border-outline text-primary bg-transparent hover:border-primary hover:bg-primary/[0.08] active:scale-[0.98]',
-  text: 'text-primary bg-transparent hover:bg-primary/[0.08] active:scale-[0.98]',
-  elevated: 'bg-surface-low text-primary shadow-level1 hover:bg-surface-container hover:shadow-level2 active:scale-[0.98]',
-  reward: 'bg-reward-container text-on-reward-container hover:bg-reward-container/85 hover:shadow-level1 active:scale-[0.98]',
-  danger: 'bg-error text-on-error hover:bg-error/90 hover:shadow-level1 active:scale-[0.98]',
+  filled: 'border border-primary/20 bg-primary text-on-primary shadow-none hover:bg-primary/90 hover:shadow-level1 active:scale-[0.98]',
+  tonal: 'glass-soft text-on-secondary-container hover:bg-secondary-container/80 hover:shadow-level1 active:scale-[0.98]',
+  outlined: 'glass-control text-primary hover:border-primary hover:bg-primary/[0.08] active:scale-[0.98]',
+  text: 'border border-transparent text-primary bg-transparent hover:border-outline-variant/60 hover:bg-primary/[0.08] active:scale-[0.98]',
+  elevated: 'glass-surface text-primary hover:bg-surface-container/80 hover:shadow-level2 active:scale-[0.98]',
+  reward: 'border border-reward/20 bg-reward-container text-on-reward-container hover:bg-reward-container/85 hover:shadow-level1 active:scale-[0.98]',
+  danger: 'border border-error/20 bg-error text-on-error hover:bg-error/90 hover:shadow-level1 active:scale-[0.98]',
 };
 
 const SIZE_CLASSES: Record<ButtonSize, string> = {
@@ -52,7 +52,7 @@ export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(functio
 ) {
   return (
     <a ref={ref} className={cn(
-      'state-layer inline-flex items-center justify-center rounded-full font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+      'state-layer inline-flex items-center justify-center rounded-[15px] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background',
       'transition-[box-shadow,background-color,color] duration-200 ease-standard',
       VARIANT_CLASSES[variant], SIZE_CLASSES[size], fullWidth && 'w-full', className,
     )} {...rest}>
@@ -101,7 +101,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       disabled={isDisabled}
       aria-busy={isLoading || undefined}
       className={cn(
-        'state-layer inline-flex items-center justify-center rounded-full font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+        'state-layer inline-flex items-center justify-center rounded-[15px] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background',
         'transition-[box-shadow,background-color,color] duration-200 ease-standard',
         'disabled:pointer-events-none disabled:opacity-38',
         VARIANT_CLASSES[variant],

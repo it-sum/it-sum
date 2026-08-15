@@ -63,7 +63,7 @@ function FieldShell({
 }
 
 const CONTROL_CLASSES =
-  'min-h-12 w-full rounded-xl border bg-surface-lowest px-4 py-3 text-body-large text-on-surface shadow-sm ' +
+  'glass-control min-h-12 w-full rounded-[15px] px-4 py-3 text-body-large text-on-surface shadow-none ' +
   'placeholder:text-on-surface-variant/70 transition-[border-color,box-shadow,background-color] duration-200 ease-standard ' +
   'hover:border-primary/70 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/15 ' +
   'disabled:cursor-not-allowed disabled:opacity-38';
@@ -257,7 +257,7 @@ export const CheckboxField = forwardRef<HTMLInputElement, CheckboxFieldProps>(
             aria-invalid={error != null || undefined}
             aria-describedby={error != null ? `${id}-error` : undefined}
             className={cn(
-              'mt-0.5 size-5 shrink-0 cursor-pointer rounded-md border-2 border-outline bg-surface shadow-sm transition-colors',
+              'mt-0.5 size-5 shrink-0 cursor-pointer rounded-[15px] border-2 border-outline bg-surface/60 shadow-none transition-colors',
               'accent-[var(--md-sys-color-primary)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/15 focus-visible:ring-offset-2',
               error != null && 'border-error',
               className,

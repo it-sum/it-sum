@@ -17,7 +17,7 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
       <div className="relative mx-auto grid min-h-[calc(100dvh-4rem)] max-w-[var(--it-sum-content-max-width)] items-center gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-[0.92fr_1.08fr] lg:gap-20 lg:px-8 lg:py-16">
         <section className="hidden lg:block" aria-labelledby="login-hero-title">
           <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary-container/50 px-3 py-1.5 text-label-large text-on-primary-container">
+            <div className="inline-flex items-center gap-2 rounded-[15px] border border-primary/20 bg-primary-container/50 backdrop-blur-sm px-3 py-1.5 text-label-large text-on-primary-container">
               <Sparkles className="size-4" aria-hidden="true" />
               <span>{t('auth.eyebrow')}</span>
             </div>
@@ -27,12 +27,12 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
             <p className="mt-5 max-w-lg text-body-large leading-8 text-on-surface-variant">{t('auth.loginSubtitle')}</p>
 
             <div className="mt-9 grid gap-3 sm:grid-cols-2">
-              <div className="flex items-start gap-3 rounded-2xl border border-outline-variant/70 bg-surface/80 p-4">
-                <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary text-on-primary"><BookOpen className="size-5" aria-hidden="true" /></div>
+              <div className="glass-soft flex items-start gap-3 rounded-[15px] p-4">
+                <div className="grid size-10 shrink-0 place-items-center rounded-[15px] bg-primary text-on-primary"><BookOpen className="size-5" aria-hidden="true" /></div>
                 <div><p className="text-title-small text-on-surface">{t('auth.featureOneTitle')}</p><p className="mt-1 text-body-small leading-5 text-on-surface-variant">{t('auth.featureOneBody')}</p></div>
               </div>
-              <div className="flex items-start gap-3 rounded-2xl border border-outline-variant/70 bg-surface/80 p-4">
-                <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-secondary-container text-on-secondary-container"><ShieldCheck className="size-5" aria-hidden="true" /></div>
+              <div className="glass-soft flex items-start gap-3 rounded-[15px] p-4">
+                <div className="grid size-10 shrink-0 place-items-center rounded-[15px] bg-secondary-container/75 backdrop-blur-sm text-on-secondary-container"><ShieldCheck className="size-5" aria-hidden="true" /></div>
                 <div><p className="text-title-small text-on-surface">{t('auth.featureTwoTitle')}</p><p className="mt-1 text-body-small leading-5 text-on-surface-variant">{t('auth.featureTwoBody')}</p></div>
               </div>
             </div>
@@ -49,19 +49,19 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
         </section>
 
         <section className="mx-auto w-full max-w-xl" aria-labelledby="login-form-title">
-          <Card variant="elevated" className="overflow-hidden rounded-[1.75rem] border border-outline-variant/60 bg-surface/95 shadow-[0_24px_70px_rgba(32,45,60,0.14)]">
+          <Card variant="elevated" className="glass-surface overflow-hidden rounded-[15px]">
             <CardBody className="p-6 sm:p-9 lg:p-10">
               <div className="mb-8 flex items-start justify-between gap-4 border-b border-outline-variant/70 pb-6">
                 <div>
                   <div className="mb-4 flex items-center gap-3 lg:hidden">
-                    <Image src="/brand/it-sum-logo.webp" alt="IT-SUM" width={44} height={44} className="size-11 rounded-xl object-cover" priority />
+                    <Image src="/brand/it-sum-logo.webp" alt="IT-SUM" width={44} height={44} className="size-11 rounded-[15px] object-cover" priority />
                     <span className="text-title-medium font-bold text-on-surface">IT-SUM</span>
                   </div>
                   <p className="text-label-large text-primary">{t('auth.previewLabel')}</p>
                   <h2 id="login-form-title" className="mt-2 text-headline-small text-on-surface">{t('auth.loginTitle')}</h2>
                   <p className="mt-2 max-w-md text-body-medium leading-6 text-on-surface-variant">{t('auth.previewBody')}</p>
                 </div>
-                <div className="hidden size-12 shrink-0 place-items-center rounded-2xl bg-primary-container text-on-primary-container sm:grid">
+                <div className="glass-soft hidden size-12 shrink-0 place-items-center rounded-[15px] text-on-primary-container sm:grid">
                   <CheckCircle2 className="size-6" aria-hidden="true" />
                 </div>
               </div>

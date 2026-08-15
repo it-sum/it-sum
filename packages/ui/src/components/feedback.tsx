@@ -14,7 +14,7 @@ export function Skeleton({ className, ...rest }: HTMLAttributes<HTMLDivElement>)
   return (
     <div
       aria-hidden="true"
-      className={cn('animate-pulse rounded-sm bg-surface-highest', className)}
+      className={cn('glass-soft animate-pulse rounded-[15px]', className)}
       {...rest}
     />
   );
@@ -59,8 +59,7 @@ export function EmptyState({ icon, title, reason, action, className }: EmptyStat
   return (
     <div
       className={cn(
-        'flex flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-outline-variant',
-        'bg-surface-lowest px-6 py-12 text-center',
+        'glass-soft flex flex-col items-center justify-center gap-3 rounded-[15px] border-dashed px-6 py-12 text-center',
         className,
       )}
     >
@@ -84,17 +83,17 @@ export interface AlertProps {
 }
 
 const ALERT_TONES = {
-  info: 'bg-secondary-container text-on-secondary-container',
-  success: 'bg-tertiary-container text-on-tertiary-container',
-  warning: 'bg-surface-highest text-on-surface border border-outline',
-  error: 'bg-error-container text-on-error-container',
+  info: 'border-secondary/20 bg-secondary-container/75 text-on-secondary-container',
+  success: 'border-tertiary/20 bg-tertiary-container/75 text-on-tertiary-container',
+  warning: 'glass-control text-on-surface',
+  error: 'border-error/20 bg-error-container/75 text-on-error-container',
 };
 
 export function Alert({ tone = 'info', title, children, className }: AlertProps) {
   return (
     <div
       role={tone === 'error' ? 'alert' : 'status'}
-      className={cn('rounded-md px-4 py-3', ALERT_TONES[tone], className)}
+      className={cn('glass-soft rounded-[15px] border px-4 py-3 backdrop-blur-sm', ALERT_TONES[tone], className)}
     >
       {title != null && <p className="text-title-small">{title}</p>}
       <div className="text-body-medium">{children}</div>

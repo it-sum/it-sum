@@ -84,16 +84,16 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </div>
 
           <div className="relative mx-auto w-full max-w-xl lg:me-0">
-            <div className="absolute -inset-5 rounded-[2.5rem] bg-primary/15 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2rem] border border-outline-variant/70 bg-inverse-surface p-3 shadow-level4 sm:p-4">
-              <div className="relative overflow-hidden rounded-[1.5rem] bg-surface-container-lowest">
+            <div className="absolute -inset-5 rounded-[15px] bg-primary/15 blur-2xl" />
+            <div className="glass-surface relative overflow-hidden rounded-[15px] p-3 shadow-level4 sm:p-4">
+              <div className="glass-soft relative overflow-hidden rounded-[15px]">
                 <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary via-tertiary to-reward" />
                 <div className="flex items-center justify-between border-b border-outline-variant/60 px-5 py-4 sm:px-6">
                   <div>
                     <p className="text-label-medium uppercase tracking-[0.16em] text-primary">IT-SUM</p>
                     <p className="mt-1 text-title-medium text-on-surface">{t('nav.resources')}</p>
                   </div>
-                  <div className="flex items-center gap-2 rounded-full bg-primary-container px-3 py-1.5 text-label-small text-on-primary-container">
+                  <div className="glass-soft flex items-center gap-2 rounded-[15px] px-3 py-1.5 text-label-small text-on-primary-container">
                     <span className="size-1.5 rounded-full bg-tertiary" aria-hidden="true" />
                     {t('home.statsResources')}
                   </div>
@@ -101,8 +101,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
                 <div className="space-y-3 p-5 sm:p-6">
                   {mockResources.slice(0, 3).map((resource, index) => (
-                    <div key={resource.id} className="group flex items-center gap-3 rounded-2xl border border-outline-variant/60 bg-surface p-3.5 transition-transform duration-200 hover:-translate-y-0.5 sm:gap-4">
-                      <div className={`grid size-11 shrink-0 place-items-center rounded-xl ${index === 0 ? 'bg-primary-container text-on-primary-container' : index === 1 ? 'bg-reward-container text-on-reward-container' : 'bg-secondary-container text-on-secondary-container'}`}>
+                    <div key={resource.id} className="glass-soft group flex items-center gap-3 rounded-[15px] p-3.5 transition-transform duration-200 hover:-translate-y-0.5 sm:gap-4">
+                      <div className={`grid size-11 shrink-0 place-items-center rounded-[15px] ${index === 0 ? 'bg-primary-container/75 text-on-primary-container' : index === 1 ? 'bg-reward-container/75 text-on-reward-container' : 'bg-secondary-container/75 text-on-secondary-container'} backdrop-blur-sm`}>
                         {resource.type === 'video' ? <PlayCircle className="size-5" aria-hidden="true" /> : <BookOpen className="size-5" aria-hidden="true" />}
                       </div>
                       <div className="min-w-0 flex-1">
@@ -128,9 +128,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </div>
               </div>
             </div>
-            <div className="absolute -bottom-7 -start-5 hidden rounded-2xl border border-outline-variant/60 bg-surface px-4 py-3 shadow-level2 sm:block">
+            <div className="glass-surface absolute -bottom-7 -start-5 hidden rounded-[15px] px-4 py-3 shadow-level2 sm:block">
               <div className="flex items-center gap-3">
-                <div className="grid size-10 place-items-center rounded-xl bg-reward-container text-on-reward-container"><Trophy className="size-5" aria-hidden="true" /></div>
+                <div className="grid size-10 place-items-center rounded-[15px] bg-reward-container/75 backdrop-blur-sm text-on-reward-container"><Trophy className="size-5" aria-hidden="true" /></div>
                 <div>
                   <p className="text-label-small text-on-surface-variant">{t('home.feature3Title')}</p>
                   <p className="mt-0.5 text-title-small text-on-surface">{t('home.ctaTitle')}</p>
@@ -169,7 +169,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             {features.map(({ title, body, icon: Icon, tone }, index) => (
               <Card key={title} variant="outlined" className={`group h-full overflow-hidden transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-level2 ${index === 0 ? 'sm:translate-y-5' : ''}`}>
                 <CardHeader>
-                  <div className={`mb-2 grid size-11 place-items-center rounded-2xl ${tone}`}><Icon className="size-5" aria-hidden="true" /></div>
+                  <div className={`mb-2 grid size-11 place-items-center rounded-[15px] ${tone} backdrop-blur-sm`}><Icon className="size-5" aria-hidden="true" /></div>
                   <CardTitle>{title}</CardTitle>
                 </CardHeader>
                 <CardBody><p className="text-body-medium leading-relaxed text-on-surface-variant">{body}</p></CardBody>
@@ -181,9 +181,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <section className="bg-surface-container-low">
         <div className="mx-auto max-w-[var(--it-sum-content-max-width)] px-4 py-20 sm:px-6 md:py-28 lg:px-8">
-          <div className="grid gap-10 rounded-[2rem] bg-primary p-6 text-on-primary shadow-level3 sm:p-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16 lg:p-12">
+          <div className="grid gap-10 rounded-[15px] bg-primary p-6 text-on-primary shadow-level3 sm:p-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16 lg:p-12">
             <div>
-              <div className="grid size-12 place-items-center rounded-2xl bg-primary-container text-on-primary-container"><Route className="size-6" aria-hidden="true" /></div>
+              <div className="grid size-12 place-items-center rounded-[15px] bg-primary-container/75 backdrop-blur-sm text-on-primary-container"><Route className="size-6" aria-hidden="true" /></div>
               <p className="mt-8 text-label-large uppercase tracking-[0.18em] text-on-primary/75">{t('home.howTitle')}</p>
               <h2 className="mt-3 text-headline-large sm:text-display-small">{t('home.ctaTitle')}</h2>
               <p className="mt-4 max-w-lg text-body-large leading-relaxed text-on-primary/80">{t('home.ctaBody')}</p>
@@ -205,15 +205,15 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       <section className="mx-auto max-w-[var(--it-sum-content-max-width)] px-4 py-20 sm:px-6 md:py-24 lg:px-8">
-        <div className="relative overflow-hidden rounded-[2rem] border border-outline-variant/60 bg-surface-container px-6 py-10 sm:px-10 sm:py-12 lg:px-14">
+        <div className="glass-surface relative overflow-hidden rounded-[15px] px-6 py-10 sm:px-10 sm:py-12 lg:px-14">
           <div className="pointer-events-none absolute -end-16 -top-24 size-64 rounded-full bg-secondary-container/50 blur-3xl" />
           <div className="relative grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <div className="flex items-center gap-2 text-primary"><Map className="size-5" aria-hidden="true" /><span className="text-label-large">{t('home.contributorsTitle')}</span></div>
               <h2 className="mt-4 max-w-2xl text-headline-medium text-on-surface sm:text-headline-large">{t('home.contributorsBody')}</h2>
               <div className="mt-6 flex flex-wrap items-center gap-3 text-body-small text-on-surface-variant">
-                <span className="inline-flex items-center gap-2 rounded-full bg-surface px-3 py-2"><Clock3 className="size-4 text-primary" aria-hidden="true" />{t('home.feature2Title')}</span>
-                <span className="inline-flex items-center gap-2 rounded-full bg-surface px-3 py-2"><CheckCircle2 className="size-4 text-tertiary" aria-hidden="true" />{t('home.feature6Title')}</span>
+                <span className="inline-flex items-center gap-2 glass-soft rounded-[15px] px-3 py-2"><Clock3 className="size-4 text-primary" aria-hidden="true" />{t('home.feature2Title')}</span>
+                <span className="inline-flex items-center gap-2 glass-soft rounded-[15px] px-3 py-2"><CheckCircle2 className="size-4 text-tertiary" aria-hidden="true" />{t('home.feature6Title')}</span>
               </div>
             </div>
             <div className="flex -space-x-3 rtl:space-x-reverse" aria-hidden="true">

@@ -13,9 +13,9 @@ import { cn } from '../lib/cn';
 export type CardVariant = 'filled' | 'elevated' | 'outlined';
 
 const CARD_VARIANTS: Record<CardVariant, string> = {
-  filled: 'bg-surface-container',
-  elevated: 'bg-surface-low shadow-level1',
-  outlined: 'bg-surface border border-outline-variant',
+  filled: 'glass-soft',
+  elevated: 'glass-surface',
+  outlined: 'glass-control',
 };
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
@@ -32,7 +32,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
     <div
       ref={ref}
       className={cn(
-        'rounded-lg text-on-surface',
+        'rounded-[15px] text-on-surface',
         'transition-[box-shadow,transform] duration-200 ease-standard',
         CARD_VARIANTS[variant],
         interactive &&

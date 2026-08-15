@@ -179,6 +179,37 @@
   letter-spacing: 0.04em;
 }
 
+/** Shared glass surfaces: consistent depth without opaque blocks. */
+@utility glass-surface {
+  background-color: color-mix(in srgb, var(--md-sys-color-surface) 72%, transparent);
+  border: 1px solid color-mix(in srgb, var(--md-sys-color-outline-variant) 62%, transparent);
+  box-shadow: 0 18px 50px rgb(32 45 60 / 0.09);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  backdrop-filter: blur(18px) saturate(135%);
+}
+
+@utility glass-soft {
+  background-color: color-mix(in srgb, var(--md-sys-color-surface-container) 58%, transparent);
+  border: 1px solid color-mix(in srgb, var(--md-sys-color-outline-variant) 48%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(125%);
+  backdrop-filter: blur(14px) saturate(125%);
+}
+
+@utility glass-control {
+  background-color: color-mix(in srgb, var(--md-sys-color-surface-container-lowest) 66%, transparent);
+  border: 1px solid color-mix(in srgb, var(--md-sys-color-outline) 54%, transparent);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  backdrop-filter: blur(12px) saturate(120%);
+}
+
+@supports not ((backdrop-filter: blur(1px))) {
+  .glass-surface,
+  .glass-soft,
+  .glass-control {
+    background-color: var(--md-sys-color-surface);
+  }
+}
+
 /** MD3 state layer, applied on hover/press without extra DOM nodes. */
 @utility state-layer {
   position: relative;

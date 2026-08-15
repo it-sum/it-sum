@@ -11,7 +11,7 @@ export default async function RegisterPage({ params }: { params: Promise<{ local
   return (
     <div className="grid min-h-[calc(100dvh-4rem)] items-center bg-surface-container-lowest px-4 py-12 sm:px-6 lg:grid-cols-2 lg:px-8">
       <div className="mx-auto w-full max-w-md">
-        <Card variant="elevated" className="overflow-hidden rounded-[1.75rem]">
+        <Card variant="elevated" className="glass-surface overflow-hidden rounded-[15px]">
           <CardBody className="p-6 sm:p-8">
             <div className="mb-8 text-center"><Image src="/brand/it-sum-logo.webp" alt="" width={76} height={76} className="mx-auto size-19 rounded-full object-cover" priority /><h1 className="mt-5 text-headline-medium text-on-surface">{t('auth.registerTitle')}</h1><p className="mt-2 text-body-medium text-on-surface-variant">{t('auth.registerSubtitle')}</p></div>
             <RegisterForm />

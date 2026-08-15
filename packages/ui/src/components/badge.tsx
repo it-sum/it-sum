@@ -14,13 +14,13 @@ import { cn } from '../lib/cn';
 export type BadgeTone = 'neutral' | 'primary' | 'success' | 'warning' | 'danger' | 'reward' | 'info';
 
 const TONE_CLASSES: Record<BadgeTone, string> = {
-  neutral: 'bg-surface-highest text-on-surface-variant',
-  primary: 'bg-primary-container text-on-primary-container',
-  success: 'bg-tertiary-container text-on-tertiary-container',
-  warning: 'bg-surface-highest text-on-surface-variant border border-outline',
-  danger: 'bg-error-container text-on-error-container',
-  reward: 'bg-reward-container text-on-reward-container',
-  info: 'bg-secondary-container text-on-secondary-container',
+  neutral: 'glass-soft text-on-surface-variant',
+  primary: 'border border-primary/20 bg-primary-container/75 text-on-primary-container backdrop-blur-sm',
+  success: 'border border-tertiary/20 bg-tertiary-container/75 text-on-tertiary-container backdrop-blur-sm',
+  warning: 'glass-control text-on-surface-variant',
+  danger: 'border border-error/20 bg-error-container/75 text-on-error-container backdrop-blur-sm',
+  reward: 'border border-reward/20 bg-reward-container/75 text-on-reward-container backdrop-blur-sm',
+  info: 'border border-secondary/20 bg-secondary-container/75 text-on-secondary-container backdrop-blur-sm',
 };
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
@@ -39,7 +39,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
       ref={ref}
       data-numeric={numeric ? 'true' : undefined}
       className={cn(
-        'inline-flex shrink-0 items-center gap-1 rounded-sm px-2 py-0.5 text-label-medium',
+        'inline-flex shrink-0 items-center gap-1 rounded-[15px] border px-2.5 py-1 text-label-medium backdrop-blur-sm',
         TONE_CLASSES[tone],
         className,
       )}

@@ -20,7 +20,7 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="rounded-2xl border border-success/30 bg-success-container/50 p-5 sm:p-6">
+      <div className="glass-soft rounded-[15px] border-success/30 p-5 sm:p-6">
         <Alert tone="success" title={t('contact.successTitle')}>
           {t('contact.successBody')}
         </Alert>

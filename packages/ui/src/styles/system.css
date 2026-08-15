@@ -54,13 +54,14 @@
      rendering gets slightly looser leading to avoid clipped ascenders. */
   --md-sys-typescale-arabic-line-adjust: 1.32;
 
-  /* Shape scale */
+  /* Shape scale: all standard product surfaces use the same 15px radius. */
   --md-sys-shape-corner-none: 0;
-  --md-sys-shape-corner-extra-small: 0.25rem;
-  --md-sys-shape-corner-small: 0.5rem;
-  --md-sys-shape-corner-medium: 0.75rem;
-  --md-sys-shape-corner-large: 1rem;
-  --md-sys-shape-corner-extra-large: 1.75rem;
+  --md-sys-shape-corner-extra-small: 15px;
+  --md-sys-shape-corner-small: 15px;
+  --md-sys-shape-corner-medium: 15px;
+  --md-sys-shape-corner-large: 15px;
+  --md-sys-shape-corner-extra-large: 15px;
+  /* Full remains available for avatars and circular progress indicators. */
   --md-sys-shape-corner-full: 9999px;
 
   /* Elevation — MD3 expresses depth with tinted shadows rather than pure black,
