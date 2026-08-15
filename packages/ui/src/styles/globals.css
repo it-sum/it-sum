@@ -240,6 +240,7 @@
     color: var(--md-sys-color-on-background);
     font-family: var(--font-latin);
     min-height: 100dvh;
+    overflow-x: hidden;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
@@ -247,6 +248,11 @@
   :lang(ar) body,
   body:lang(ar) {
     font-family: var(--font-arabic);
+  }
+
+  ::selection {
+    background: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
   }
 
   /* Headings inherit weight from the typescale utilities, not from the browser. */
