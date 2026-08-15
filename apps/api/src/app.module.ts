@@ -13,6 +13,15 @@ import { ResourcesController } from "./resources/resources.controller.js";
 import { ResourcesService } from "./resources/resources.service.js";
 import { StreamTokenService } from "./resources/stream-token.service.js";
 import { StreamProxyService } from "./resources/stream-proxy.service.js";
+import { UsersController } from "./users/users.controller.js";
+import { AcademicsController } from "./academics/academics.controller.js";
+import { VideosController } from "./videos/videos.controller.js";
+import { QuizzesController } from "./quizzes/quizzes.controller.js";
+import { ProgressController } from "./progress/progress.controller.js";
+import { RewardsController } from "./rewards/rewards.controller.js";
+import { NotificationsController } from "./notifications/notifications.controller.js";
+import { SupportController } from "./support/support.controller.js";
+import { AiController } from "./ai/ai.controller.js";
 
 const environment = parseEnvironment();
 
@@ -31,7 +40,20 @@ const environment = parseEnvironment();
       },
     }),
   ],
-  controllers: [HealthController, DriveController, ResourcesController],
+  controllers: [
+    HealthController,
+    DriveController,
+    ResourcesController,
+    UsersController,
+    AcademicsController,
+    VideosController,
+    QuizzesController,
+    ProgressController,
+    RewardsController,
+    NotificationsController,
+    SupportController,
+    AiController,
+  ],
   providers: [
     { provide: ENVIRONMENT, useValue: environment },
     SupabaseService,

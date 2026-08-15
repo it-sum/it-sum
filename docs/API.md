@@ -215,3 +215,23 @@ A frontend PDF viewer should follow this sequence:
 [3]: https://developers.google.com/drive/api/guides/manage-downloads "Google Drive download documentation"
 [4]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range "HTTP Range header documentation"
 [5]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag "HTTP ETag header documentation"
+
+## Implemented domain endpoints
+
+The backend now exposes the following schema-backed groups in addition to health, resources, and Drive. All routes are tenant-scoped through the verified Supabase JWT unless marked public.
+
+| Group | Routes | Access |
+|---|---|---|
+| Users | `GET /users/me`, `GET /users/me/preferences`, `PATCH /users/me/preferences` | Authenticated user. |
+| Academics | `GET /academics/structure` | Authenticated tenant member. |
+| Videos | `GET /videos` | Authenticated tenant member; only published videos are returned. |
+| Quizzes | `GET /quizzes`, `GET /quizzes/:id`, `POST /quizzes/:id/attempts`, `POST /quizzes/attempts/:attemptId/submit` | Authenticated tenant member; student-facing quiz detail omits `isCorrect`. |
+| Progress | `GET /progress/me`, `PUT /progress/resources/:resourceId` | Authenticated user; rows are filtered by user and university. |
+| Rewards | `GET /rewards/me`, `GET /rewards/leaderboard` | Authenticated tenant member; anonymous leaderboard visibility is respected. |
+| Notifications | `GET /notifications`, `PATCH /notifications/:id/read` | Authenticated user. |
+| Support | `POST /support/contact`, `POST /support/reports` | Contact is public; reports require authentication. |
+| AI | `POST /ai/conversations`, `GET /ai/conversations/:id`, `POST /ai/conversations/:id/messages`, `POST /ai/feedback` | Authenticated user; message creation returns `503` until an AI provider key is configured. |
+
+The quiz submission route scores attempts server-side by reading correct options from the database. The API response returns score, maximum score, correct count, total questions, and submission time, but it does not expose per-option answer keys.
+
+The AI message route currently persists the user message only after confirming that an enabled provider key exists. Assistant generation, retrieval, budget enforcement, cache lookup, and usage-event recording remain the next AI implementation step.

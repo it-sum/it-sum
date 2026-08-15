@@ -21,6 +21,7 @@ The repository contains an additive Track B backend foundation organized as a pn
 | RLS policies | Pending | Add and review the dedicated policy migration before staging or production. |
 | Ingestion worker | Pending | The sync route reads changes; complete PDF extraction and resource ingestion remain. |
 | Integration tests | Pending | Add Supabase, JWKS, OAuth callback, tenant-isolation, and Range/ETag tests. |
+| Domain APIs | Implemented foundation | Users, academics, videos, quizzes, progress, rewards, notifications, support, and AI conversation routes are now wired to the schema-backed tables. |
 
 ## Verification
 
@@ -50,6 +51,7 @@ For a full deployment check, follow [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md). 
 | [`docs/SECURITY.md`](docs/SECURITY.md) | Reviewing secrets, authorization, privacy, and incident response. |
 | [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) | Deploying to staging or production. |
 | [`docs/CONTRIBUTING.md`](docs/CONTRIBUTING.md) | Making and reviewing changes. |
+| [`docs/AGENT-COLLABORATION-PROMPT.md`](docs/AGENT-COLLABORATION-PROMPT.md) | Sending the other agent a precise progress and integration prompt. |
 
 ## Required staging credentials
 
