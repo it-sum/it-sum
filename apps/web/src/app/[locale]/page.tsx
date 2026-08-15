@@ -95,7 +95,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {features.map(({ title, body, icon: Icon }) => (
-            <Card key={title} variant="outlined" interactive className="h-full">
+            <Card key={title} variant="outlined" className="h-full">
               <CardHeader>
                 <div className="mb-2 grid size-11 place-items-center rounded-xl bg-primary-container text-on-primary-container"><Icon className="size-5" aria-hidden="true" /></div>
                 <CardTitle>{title}</CardTitle>

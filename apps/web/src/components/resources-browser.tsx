@@ -36,11 +36,11 @@ export function ResourcesBrowser({ resources, facets }: { resources: ResourceSum
     <div className="mx-auto max-w-[var(--it-sum-content-max-width)] px-4 py-10 sm:px-6 lg:px-8">
       <div className="flex flex-col gap-4 md:flex-row md:items-end">
         <div className="flex-1"><TextField label={t('resources.searchLabel')} placeholder={t('resources.searchPlaceholder')} value={query} onChange={(event) => setQuery(event.target.value)} startIcon={<Search />} /></div>
-        <Button variant="outlined" startIcon={<Filter />} onClick={() => setShowFilters((open) => !open)} aria-expanded={showFilters}>{t('resources.filters')}{activeFilterCount > 0 && <Badge tone="primary" numeric className="ms-1">{activeFilterCount}</Badge>}</Button>
+        <Button variant="outlined" startIcon={<Filter />} onClick={() => setShowFilters((open) => !open)} aria-expanded={showFilters} aria-controls="resource-filters">{t('resources.filters')}{activeFilterCount > 0 && <Badge tone="primary" numeric className="ms-1">{activeFilterCount}</Badge>}</Button>
       </div>
 
       {showFilters && (
-        <div className="mt-4 grid gap-4 rounded-xl border border-outline-variant/60 bg-surface-container p-4 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_auto]">
+        <div id="resource-filters" className="mt-4 grid gap-4 rounded-xl border border-outline-variant/60 bg-surface-container p-4 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_auto]">
           <label className="flex flex-col gap-1.5"><span className="text-label-large text-on-surface">{t('resources.materialKind')}</span><select value={kind} onChange={(event) => setKind(event.target.value)} className="rounded-sm border border-outline bg-surface-lowest px-3 py-2.5 text-body-medium text-on-surface"><option value="all">{t('common.all')}</option>{facets.materialKinds.map((facet) => <option key={facet.value} value={facet.value}>{facet.label} ({facet.count})</option>)}</select></label>
           <label className="flex flex-col gap-1.5"><span className="text-label-large text-on-surface">{t('resources.examPhase')}</span><select value={phase} onChange={(event) => setPhase(event.target.value)} className="rounded-sm border border-outline bg-surface-lowest px-3 py-2.5 text-body-medium text-on-surface"><option value="all">{t('common.all')}</option>{facets.examPhases.map((facet) => <option key={facet.value} value={facet.value}>{facet.label} ({facet.count})</option>)}</select></label>
           <Button variant="text" startIcon={<X />} onClick={clearFilters}>{t('resources.clearFilters')}</Button>
@@ -53,7 +53,7 @@ export function ResourcesBrowser({ resources, facets }: { resources: ResourceSum
         {filtered.map((resource) => {
           const Icon = resource.type === 'video' ? PlayCircle : FileText;
           const progress = resource.progress?.percent ?? 0;
-          return <Card key={resource.id} variant="outlined" interactive className="flex h-full flex-col overflow-hidden">
+          return <Card key={resource.id} variant="outlined" className="flex h-full flex-col overflow-hidden">
             <div className={`flex h-32 items-center justify-center ${resource.type === 'video' ? 'bg-secondary-container text-on-secondary-container' : 'bg-primary-container text-on-primary-container'}`}><Icon className="size-12" aria-hidden="true" /></div>
             <CardBody className="flex flex-1 flex-col p-4">
               <div className="flex items-start justify-between gap-2"><Badge tone={resource.type === 'video' ? 'info' : 'primary'}>{resource.type === 'video' ? t('resources.watchVideo') : 'PDF'}</Badge>{resource.progress?.completedAt != null && <CheckCircle2 className="size-5 text-tertiary" aria-label={t('resources.completed')} />}</div>

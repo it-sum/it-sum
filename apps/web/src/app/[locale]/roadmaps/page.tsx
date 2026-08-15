@@ -11,21 +11,21 @@ export default async function RoadmapsPage({ params }: { params: Promise<{ local
 
   return (
     <>
-      <PageHeader title={t('nav.roadmaps')} description="مسارات تعلم مرتبطة بمواد IT-SUM ومراجع roadmap.sh المفتوحة." />
+      <PageHeader title={t('roadmaps.title')} description={t('roadmaps.subtitle')} />
       <div className="mx-auto max-w-[var(--it-sum-content-max-width)] px-4 py-12 sm:px-6 md:py-16 lg:px-8">
-        <div className="mb-8 flex items-center gap-3 rounded-xl bg-secondary-container px-4 py-4 text-on-secondary-container"><Map className="size-5 shrink-0" aria-hidden="true" /><p className="text-body-medium">اختر مساراً، ثم تقدم خطوة خطوة مع حفظ إنجازك داخل حسابك.</p></div>
+        <div className="mb-8 flex items-center gap-3 rounded-xl bg-secondary-container px-4 py-4 text-on-secondary-container"><Map className="size-5 shrink-0" aria-hidden="true" /><p className="text-body-medium">{t('roadmaps.info')}</p></div>
         <div className="grid gap-5 lg:grid-cols-2">
           {mockRoadmaps.map((roadmap) => (
-            <Card key={roadmap.id} variant="outlined" interactive className="overflow-hidden">
+            <Card key={roadmap.id} variant="outlined" className="overflow-hidden">
               <div className="flex h-36 items-center justify-center bg-primary-container text-on-primary-container"><Route className="size-14" aria-hidden="true" /></div>
               <CardHeader>
-                <div className="flex items-start justify-between gap-3"><CardTitle>{roadmap.title.ar}</CardTitle><Badge tone="primary" numeric>{Math.round(roadmap.progressPercent)}%</Badge></div>
-                <p className="text-body-medium text-on-surface-variant">{roadmap.description.ar}</p>
+                <div className="flex items-start justify-between gap-3"><CardTitle>{roadmap.title[locale === 'ar' ? 'ar' : 'en']}</CardTitle><Badge tone="primary" numeric>{Math.round(roadmap.progressPercent)}%</Badge></div>
+                <p className="text-body-medium text-on-surface-variant">{roadmap.description[locale === 'ar' ? 'ar' : 'en']}</p>
               </CardHeader>
               <CardBody>
                 <ProgressBar value={roadmap.progressPercent} label={`${Math.round(roadmap.progressPercent)}%`} tone="reward" />
-                <div className="mt-4 flex flex-wrap gap-4 text-body-small text-on-surface-variant"><span className="inline-flex items-center gap-1.5"><CheckCircle2 className="size-4 text-tertiary" aria-hidden="true" />{roadmap.completedNodeCount} / {roadmap.nodeCount}</span><span className="inline-flex items-center gap-1.5"><Clock3 className="size-4" aria-hidden="true" />{roadmap.estimatedHours} ساعة</span></div>
-                <div className="mt-5 flex flex-wrap gap-2"><Link href={`/app/roadmaps/${roadmap.slug}` as never}><Button endIcon={<ArrowInline />}>ابدأ المسار</Button></Link>{roadmap.externalReferenceUrl != null && <a href={roadmap.externalReferenceUrl} target="_blank" rel="noreferrer"><Button variant="text">roadmap.sh</Button></a>}</div>
+                <div className="mt-4 flex flex-wrap gap-4 text-body-small text-on-surface-variant"><span className="inline-flex items-center gap-1.5"><CheckCircle2 className="size-4 text-tertiary" aria-hidden="true" />{roadmap.completedNodeCount} / {roadmap.nodeCount}</span><span className="inline-flex items-center gap-1.5"><Clock3 className="size-4" aria-hidden="true" />{roadmap.estimatedHours == null ? '—' : t('roadmaps.hours', { count: roadmap.estimatedHours })}</span></div>
+                <div className="mt-5 flex flex-wrap gap-2"><Link href={`/app/roadmaps/${roadmap.slug}` as never}><Button endIcon={<ArrowInline />}>{t('roadmaps.start')}</Button></Link>{roadmap.externalReferenceUrl != null && <a href={roadmap.externalReferenceUrl} target="_blank" rel="noreferrer"><Button variant="text">{t('roadmaps.external')}</Button></a>}</div>
               </CardBody>
             </Card>
           ))}

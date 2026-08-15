@@ -126,8 +126,17 @@
     "metrics": {
       "resources": "موارد مكتملة",
       "streak": "سلسلة الأيام الحالية",
+      "streakValue": "٤ أيام",
       "points": "نقاط المكافآت"
     }
+  },
+  "roadmaps": {
+    "title": "خطط التعلم",
+    "subtitle": "اتبع مسارات مركزة تربط مواد IT-SUM بأهداف دراسية عملية.",
+    "info": "اختر مساراً، ثم تقدم خطوة خطوة مع حفظ إنجازك داخل حسابك.",
+    "start": "ابدأ المسار",
+    "hours": "{count} ساعة",
+    "external": "roadmap.sh"
   },
   "materialKind": {
     "summary": "ملخصات",

@@ -126,8 +126,17 @@
     "metrics": {
       "resources": "Resources completed",
       "streak": "Current streak",
+      "streakValue": "4 days",
       "points": "Reward points"
     }
+  },
+  "roadmaps": {
+    "title": "Learning roadmaps",
+    "subtitle": "Follow focused paths that connect IT-SUM courses with practical study goals.",
+    "info": "Choose a path, then move step by step while your progress is saved to your account.",
+    "start": "Start roadmap",
+    "hours": "{count} hours",
+    "external": "roadmap.sh"
   },
   "materialKind": {
     "summary": "Summaries",
