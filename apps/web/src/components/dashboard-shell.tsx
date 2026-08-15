@@ -66,10 +66,20 @@ export function DashboardShell({ children, area = 'student' }: { children: React
   }
 
   return (
-    <div className="min-h-dvh bg-background/80" dir={rtl ? 'rtl' : 'ltr'}>
-      <aside className="glass-panel sticky top-0 z-30 hidden h-dvh w-72 shrink-0 flex-col rounded-none border-y-0 border-s-0 border-e lg:flex">
-        <div className="border-b border-outline-variant/50 p-6">
-          <p className="text-label-medium tracking-[0.12em] text-primary">IT-SUM WORKSPACE</p>
+    <div className="min-h-dvh bg-background/60" dir={rtl ? 'rtl' : 'ltr'}>
+      <aside className="glass-panel sticky top-0 z-30 hidden h-dvh w-[18.5rem] shrink-0 flex-col rounded-none border-y-0 border-s-0 border-e border-outline-variant/70 bg-surface/60 shadow-level3 backdrop-blur-2xl lg:flex">
+        <div className="border-b border-outline-variant/50 p-5">
+          <div className="mb-5 flex items-center gap-1.5" aria-hidden="true">
+            <span className="size-2.5 rounded-full bg-error/80" />
+            <span className="size-2.5 rounded-full bg-reward/80" />
+            <span className="size-2.5 rounded-full bg-success/80" />
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="grid size-9 place-items-center rounded-[15px] border border-primary/20 bg-primary/[0.12] text-primary shadow-level1">
+              {isAdminArea ? <ShieldCheck className="size-4" /> : <BarChart3 className="size-4" />}
+            </span>
+            <p className="text-label-medium tracking-[0.12em] text-primary">IT-SUM WORKSPACE</p>
+          </div>
           <p className="mt-2 text-title-medium text-on-surface">
             {isAdminArea ? (rtl ? 'مركز الإدارة' : 'Admin center') : rtl ? 'مساحة التعلم' : 'Learning workspace'}
           </p>
@@ -81,7 +91,7 @@ export function DashboardShell({ children, area = 'student' }: { children: React
               <a
                 key={href}
                 href={href}
-                className={`state-layer flex min-h-12 items-center gap-3 rounded-[15px] border px-3.5 text-label-large transition-colors ${active ? 'border-primary/20 bg-primary-container/80 text-on-primary-container shadow-level1' : 'border-transparent text-on-surface-variant hover:border-outline-variant/60 hover:bg-surface-high/70 hover:text-on-surface'}`}
+                className={`state-layer flex min-h-12 items-center gap-3 rounded-[15px] border px-3.5 text-label-large transition-[background-color,border-color,box-shadow,color,transform] ${active ? 'border-primary/25 bg-primary/[0.12] text-on-surface shadow-level1' : 'border-transparent text-on-surface-variant hover:-translate-y-0.5 hover:border-outline-variant/70 hover:bg-surface-high/70 hover:text-on-surface'}`}
                 aria-current={active ? 'page' : undefined}
               >
                 <Icon className="size-5 shrink-0" aria-hidden="true" />
@@ -92,7 +102,7 @@ export function DashboardShell({ children, area = 'student' }: { children: React
           })}
         </nav>
         <div className="border-t border-outline-variant/50 p-4">
-          <Card variant="outlined" className="p-4">
+          <Card variant="outlined" className="border-outline-variant/70 bg-surface/45 p-4 shadow-level1 backdrop-blur-xl">
             <div className="flex items-center gap-3">
               <div className="grid size-10 shrink-0 place-items-center rounded-full bg-primary text-on-primary">
                 {session?.role === 'admin' ? <ShieldCheck className="size-5" /> : <BookOpen className="size-5" />}
@@ -110,7 +120,7 @@ export function DashboardShell({ children, area = 'student' }: { children: React
       </aside>
 
       <div className="min-w-0 lg:ms-72">
-        <div className="glass-panel sticky top-0 z-20 flex items-center justify-between rounded-none border-x-0 border-t-0 px-4 py-3 lg:hidden">
+        <div className="glass-panel sticky top-0 z-20 flex items-center justify-between rounded-none border-x-0 border-t-0 border-outline-variant/70 bg-surface/60 px-4 py-3 shadow-level2 backdrop-blur-2xl lg:hidden">
           <Button variant="text" size="sm" className="size-11 min-h-11 !p-0" startIcon={mobileOpen ? <X /> : <Menu />} onClick={() => setMobileOpen((value) => !value)} aria-label={mobileOpen ? (rtl ? 'إغلاق القائمة' : 'Close menu') : (rtl ? 'فتح القائمة' : 'Open menu')} aria-expanded={mobileOpen} />
           <div className="flex items-center gap-2 text-title-small text-on-surface">
             {isAdminArea ? <ShieldCheck className="size-5 text-primary" /> : <BarChart3 className="size-5 text-primary" />}
@@ -119,7 +129,7 @@ export function DashboardShell({ children, area = 'student' }: { children: React
           <Button variant="text" size="sm" className="size-11 min-h-11 !p-0" startIcon={<LogOut />} onClick={logout} aria-label={rtl ? 'تسجيل الخروج' : 'Sign out'} />
         </div>
         {mobileOpen && (
-          <nav className="glass-panel relative z-10 border-x-0 p-3 lg:hidden" aria-label={rtl ? 'تنقل مساحة التعلم' : 'Learning navigation'}>
+          <nav className="glass-panel relative z-10 border-x-0 border-outline-variant/70 bg-surface/75 p-3 shadow-level3 backdrop-blur-2xl lg:hidden" aria-label={rtl ? 'تنقل مساحة التعلم' : 'Learning navigation'}>
             <div className="flex flex-col gap-1.5">
               {items.map(({ href, label, icon: Icon }) => (
                 <a key={href} href={href} onClick={() => setMobileOpen(false)} className="state-layer flex min-h-12 items-center gap-3 rounded-[15px] border border-transparent px-3.5 text-label-large text-on-surface hover:border-outline-variant/60 hover:bg-surface-high/70">
@@ -130,7 +140,7 @@ export function DashboardShell({ children, area = 'student' }: { children: React
             </div>
           </nav>
         )}
-        <div className="min-h-[calc(100dvh-4rem)]">{children}</div>
+        <div className="min-h-[calc(100dvh-4rem)] bg-background/35">{children}</div>
       </div>
     </div>
   );

@@ -75,7 +75,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
 
       {!isWorkspace && <header className="sticky top-0 z-40 px-3 pt-3 sm:px-5 lg:px-6">
         <div className="mx-auto max-w-[var(--it-sum-content-max-width)]">
-          <div className="glass-panel flex min-h-16 items-center gap-2 rounded-[15px] px-3 sm:gap-3 sm:px-4">
+          <div className="glass-panel flex min-h-16 items-center gap-2 rounded-[15px] border border-outline-variant/70 bg-surface/65 px-3 shadow-level2 backdrop-blur-2xl sm:gap-3 sm:px-4">
             <Link href="/" aria-label={t('meta.siteName')} className="group flex shrink-0 items-center gap-2 rounded-[15px] px-1.5 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
               <span className="glass-control grid size-9 place-items-center overflow-hidden rounded-[15px] p-0 shadow-level1 transition-transform duration-200 group-hover:-rotate-3 sm:size-10">
                 <Image src="/brand/it-sum-logo.webp" alt="" width={40} height={40} className="size-full object-cover" priority />
@@ -85,14 +85,14 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
 
             <div className="hidden h-7 w-px bg-outline-variant/60 lg:block" aria-hidden="true" />
 
-            <nav aria-label={t('nav.mainNavigation')} className="hidden flex-1 items-center gap-1 lg:flex">
+            <nav aria-label={t('nav.mainNavigation')} className="hidden flex-1 items-center gap-1.5 lg:flex">
               {PUBLIC_NAV.map((item) => {
                 const active = item.href === '/' ? resolvedPath === '/' : resolvedPath.startsWith(item.href);
                 return (
                   <Link
                     key={item.key}
                     href={item.href}
-                    className={`state-layer relative rounded-[15px] border border-transparent px-3 py-2 text-label-large transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary 2xl:px-3.5 ${active ? 'bg-primary-container text-on-primary-container' : 'text-on-surface-variant hover:bg-surface-high hover:text-on-surface'}`}
+                    className={`state-layer relative rounded-[15px] border border-transparent px-3 py-2 text-label-large transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary 2xl:px-3.5 ${active ? 'bg-primary/[0.12] text-on-surface shadow-level1 after:absolute after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:rounded-full after:bg-primary' : 'text-on-surface-variant hover:bg-surface-high/70 hover:text-on-surface'}`}
                     aria-current={active ? 'page' : undefined}
                   >
                     {t(`nav.${item.key}`)}
@@ -101,20 +101,20 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
               })}
             </nav>
 
-            <div className="ms-auto flex items-center gap-1.5">
+            <div className="ms-auto flex items-center gap-1 rounded-[15px] border border-outline-variant/60 bg-surface/35 p-1.5 backdrop-blur-xl">
               <Badge tone="success" className="hidden rounded-full px-2.5 py-1 text-label-small xl:inline-flex">Open source</Badge>
               <Link href={resolvedPath as never} locale={alternateLocale} className="glass-control rounded-[15px] px-2.5 py-2 text-label-large text-on-surface-variant transition-colors hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-label={alternateLabel}>
                 {alternateLabel}
               </Link>
-              <button
-                type="button"
+              <Button
+                variant="text"
+                size="sm"
                 onClick={() => setTheme(nextTheme)}
-                className="glass-control grid size-10 place-items-center rounded-[15px] text-on-surface-variant transition-colors hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="!min-h-10 !w-10 !p-0 text-on-surface-variant hover:text-on-surface"
+                startIcon={theme === 'dark' ? <Sun /> : <Moon />}
                 aria-label={t('theme.toggle')}
                 title={themeLabel}
-              >
-                {theme === 'dark' ? <Sun className="size-[1.125rem]" aria-hidden="true" /> : <Moon className="size-[1.125rem]" aria-hidden="true" />}
-              </button>
+              />
               {isAuthenticated ? (
                 <Button type="button" size="sm" variant="outlined" onClick={handleLogout}>{t('nav.logout')}</Button>
               ) : (
@@ -122,24 +122,24 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
                   <Button size="sm" variant="filled">{t('nav.login')}</Button>
                 </Link>
               )}
-              <button
-                type="button"
-                className="glass-control grid size-10 place-items-center rounded-[15px] text-on-surface transition-colors hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:hidden"
+              <Button
+                variant="text"
+                size="sm"
+                className="!min-h-10 !w-10 !p-0 text-on-surface lg:hidden"
+                startIcon={menuOpen ? <X /> : <Menu />}
                 title={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
                 onClick={() => setMenuOpen((open) => !open)}
                 aria-expanded={menuOpen}
                 aria-controls="mobile-navigation"
                 aria-label={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
-              >
-                {menuOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
-              </button>
+              />
             </div>
           </div>
 
           {menuOpen && !isAuthenticated && (
             <>
               <button type="button" aria-label={t('nav.closeMenu')} className="fixed inset-0 top-24 z-30 bg-scrim/25 lg:hidden" onClick={() => setMenuOpen(false)} />
-              <nav id="mobile-navigation" aria-label={t('nav.mainNavigation')} className="glass-panel relative z-40 mt-2 rounded-[15px] p-2 lg:hidden">
+              <nav id="mobile-navigation" aria-label={t('nav.mainNavigation')} className="glass-panel relative z-40 mt-2 rounded-[15px] border border-outline-variant/70 bg-surface/75 p-2 shadow-level3 backdrop-blur-2xl lg:hidden">
                 <div className="flex flex-col gap-1">
                   {PUBLIC_NAV.map((item) => {
                     const active = item.href === '/' ? resolvedPath === '/' : resolvedPath.startsWith(item.href);
