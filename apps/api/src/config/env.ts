@@ -4,6 +4,7 @@ const EnvironmentSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   PORT: z.coerce.number().int().positive().default(3001),
   API_PREFIX: z.string().min(1).default("api/v1"),
+  PUBLIC_API_BASE_URL: z.string().url().optional(),
   SERVICE_VERSION: z.string().min(1).default("0.1.0"),
   SUPABASE_URL: z.string().url().default("https://ztujhryukdddhjymhfod.supabase.co"),
   SUPABASE_JWKS_URL: z.string().url().optional(),

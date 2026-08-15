@@ -1,21 +1,30 @@
 # IT-SUM Backend Handoff
 
-This repository now contains an additive Track B backend foundation for IT-SUM. The existing `README.md` and the empty `apps/web` area were left untouched, so the frontend track can be added or restored without conflicts.
+## Purpose
 
-## Implemented in this pass
+This document is the concise handoff for the backend track. The complete project documentation is in the [`docs/`](docs/) directory and the root [`README.md`](README.md) is the primary onboarding entry point.
 
-| Area | Status | Notes |
+## Current implementation
+
+The repository contains an additive Track B backend foundation organized as a pnpm workspace and Turborepo monorepo.
+
+| Area | Status | Implementation |
 |---|---|---|
-| Monorepo | Complete | pnpm workspaces plus Turborepo with `apps/api`, `packages/shared`, and `packages/drive`. |
-| Shared contracts | Complete | Zod schemas for health, tenant claims, resources, stream tokens, Drive OAuth, and Drive sync responses. |
-| Supabase migrations | Drafted | Extensions, tenancy, identity, academic structure, library, Drive sync, progress, rewards, notifications, governance, and AI tables. |
-| NestJS API | Bootstrapped | NestJS 11, JWKS verification, role and tenant guards, global Zod validation, pino redaction, health endpoint, resource endpoints, Drive OAuth, and stream proxy. |
-| Drive adapters | Complete | `oauth_user` and `shared_drive` adapters expose one typed interface for metadata, delta changes, OAuth, and ranged downloads. |
-| PDF streaming | Implemented | Short-lived signed stream tokens, Range forwarding, ETag handling, and private cache headers. |
+| Monorepo | Complete | `apps/api`, `packages/shared`, and `packages/drive` are configured. |
+| Shared contracts | Complete foundation | Zod schemas for identity, health, resources, pagination, stream tokens, Drive OAuth, and Drive sync. |
+| NestJS API | Complete foundation | NestJS 11 bootstrap, global validation, JWKS verification, role and tenant guards, pino redaction, health endpoint, resource routes, Drive routes, and stream proxy. |
+| OAuth-user Drive adapter | Implemented | Authorization URL, code exchange, metadata, changes pages, and ranged downloads. |
+| Shared Drive adapter | Implemented | Shared Drive file listing and ranged downloads behind the same interface. |
+| Stream token | Implemented | Short-lived signed token bound to resource, user, and university. |
+| Refresh-token encryption | Implemented | AES-256-GCM encryption service for persistence. |
+| Supabase migrations | Schema foundation | Extensions and domain tables are present in ordered SQL migrations. |
+| RLS policies | Pending | Add and review the dedicated policy migration before staging or production. |
+| Ingestion worker | Pending | The sync route reads changes; complete PDF extraction and resource ingestion remain. |
+| Integration tests | Pending | Add Supabase, JWKS, OAuth callback, tenant-isolation, and Range/ETag tests. |
 
 ## Verification
 
-Run these commands from the repository root:
+The verified local sequence is:
 
 ```bash
 pnpm install
@@ -23,29 +32,44 @@ pnpm --filter @it-sum/shared build
 pnpm --filter @it-sum/drive build
 pnpm typecheck
 pnpm build
+pnpm test
 ```
 
-The local verification completed successfully for package builds and workspace typechecking before this handoff.
+For a full deployment check, follow [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md). A green TypeScript build does not prove that provider credentials, Supabase RLS, Google OAuth, or tenant isolation are configured correctly.
 
-## Required credentials before staging use
+## Documentation map
 
-The API is intentionally safe to boot in local development without secrets, but staging requires the following environment variables:
+| Document | Use it when |
+|---|---|
+| [`README.md`](README.md) | Onboarding, architecture overview, quick start, and project status. |
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Reviewing boundaries, request flows, and module responsibilities. |
+| [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) | Setting up a local environment or debugging the API. |
+| [`docs/API.md`](docs/API.md) | Integrating the frontend with the v1 API. |
+| [`docs/DATABASE.md`](docs/DATABASE.md) | Applying migrations, designing tables, or completing RLS. |
+| [`docs/DRIVE-INTEGRATION.md`](docs/DRIVE-INTEGRATION.md) | Configuring Google OAuth, Drive modes, sync, or PDF delivery. |
+| [`docs/SECURITY.md`](docs/SECURITY.md) | Reviewing secrets, authorization, privacy, and incident response. |
+| [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) | Deploying to staging or production. |
+| [`docs/CONTRIBUTING.md`](docs/CONTRIBUTING.md) | Making and reviewing changes. |
+
+## Required staging credentials
+
+The code must receive these values from the deployment secret manager. They must not be committed:
 
 | Variable | Purpose |
 |---|---|
 | `SUPABASE_URL` | Supabase project URL. |
-| `SUPABASE_SERVICE_ROLE_KEY` | Server-side tenant-scoped reads and Drive account persistence. |
-| `SUPABASE_JWKS_URL` | Optional override; defaults to `${SUPABASE_URL}/auth/v1/.well-known/jwks.json`. |
-| `SUPABASE_ISSUER` | Optional issuer check for Supabase JWTs. |
-| `STREAM_SIGNING_SECRET` | At least 32 characters; signs PDF stream and OAuth state tokens. |
-| `DRIVE_TOKEN_ENCRYPTION_KEY` | At least 32 characters; encrypts Google refresh tokens before database storage. |
-| `GOOGLE_CLIENT_ID` | Google OAuth client ID. |
-| `GOOGLE_CLIENT_SECRET` | Google OAuth client secret. |
-| `GOOGLE_REDIRECT_URI` | OAuth callback URL, normally `/api/v1/drive/oauth/callback`. |
+| `SUPABASE_SERVICE_ROLE_KEY` | Server-side Supabase access. |
+| `SUPABASE_JWKS_URL` and `SUPABASE_ISSUER` | JWT verification configuration. |
+| `STREAM_SIGNING_SECRET` | Signs short-lived stream and OAuth state tokens. |
+| `DRIVE_TOKEN_ENCRYPTION_KEY` | Encrypts Google refresh tokens at rest. |
+| `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` | Google OAuth client. |
+| `GOOGLE_REDIRECT_URI` | Exact registered OAuth callback. |
 | `DRIVE_MODE` | `oauth_user` or `shared_drive`. |
-| `GOOGLE_SHARED_DRIVE_ID` | Required when `DRIVE_MODE=shared_drive`. |
-| `DRIVE_ROOT_FOLDER_ID` | Optional root folder used by ingestion. |
+| `GOOGLE_SHARED_DRIVE_ID` | Required for Shared Drive mode. |
+| `PUBLIC_API_BASE_URL` | HTTPS API origin used in absolute stream URLs. |
 
-## Next backend steps
+## Immediate next steps
 
-The immediate next steps are to apply the Supabase migrations against the staging project, add the RLS policy migration, run the API against real Supabase and Google credentials, and then add integration tests for JWKS verification, tenant isolation, Drive OAuth callback handling, and ranged PDF streaming.
+The next developer should first add the RLS helper functions and policies, apply the complete migration set to a disposable Supabase project, create integration tests with two university tenants, and verify the API against real staging credentials. After that, implement an idempotent Drive ingestion worker that updates resources, handles removals and conflicts, extracts PDF text, and creates document chunks and embeddings.
+
+The frontend developer should consume `@it-sum/shared`, use the stream-token sequence in [`docs/API.md`](docs/API.md), and avoid direct Google Drive access. Any contract change should be made in the shared package first.

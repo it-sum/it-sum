@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Inject, Injectable, NotFoundException } from "@nestjs/common";
 import {
   ResourceListResponseSchema,
   ResourceSchema,
@@ -6,6 +6,8 @@ import {
   type ResourceListResponse,
 } from "@it-sum/shared";
 import type { AuthUser } from "../auth/auth.types.js";
+import type { Environment } from "../config/env.js";
+import { ENVIRONMENT } from "../config/tokens.js";
 import { SupabaseService } from "../common/supabase.service.js";
 import { StreamTokenService } from "./stream-token.service.js";
 
@@ -37,6 +39,7 @@ export class ResourcesService {
   constructor(
     private readonly supabase: SupabaseService,
     private readonly streamTokens: StreamTokenService,
+    @Inject(ENVIRONMENT) private readonly environment: Environment,
   ) {}
 
   async list(user: AuthUser, query: ResourceListQuery): Promise<ResourceListResponse> {
@@ -82,7 +85,7 @@ export class ResourcesService {
     return {
       token: token.token,
       expiresAt: token.expiresAt.toISOString(),
-      url: `/api/v1/resources/${resource.id}/stream?token=${encodeURIComponent(token.token)}`,
+      url: `${this.environment.PUBLIC_API_BASE_URL ?? `http://localhost:${this.environment.PORT}`}/${this.environment.API_PREFIX}/resources/${resource.id}/stream?token=${encodeURIComponent(token.token)}`,
     };
   }
 
