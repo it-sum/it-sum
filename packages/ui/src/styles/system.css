@@ -1,0 +1,158 @@
+/**
+ * Material Design 3 system tokens beyond colour: typography, shape, elevation,
+ * state layers, motion and spacing.
+ *
+ * Colour is generated (see `generated/md3-tokens.css`) because it derives from a
+ * seed; these are hand-authored because they are specification constants. Keeping
+ * them as custom properties means a fork can retune density or roundness in one
+ * file without touching a single component.
+ */
+
+:root {
+  /* Typography — Alexandria carries Arabic, Montserrat carries Latin. The font
+     variables are injected by next/font in the web app; the fallbacks keep the
+     package usable standalone. */
+  --md-sys-typescale-font-arabic: var(--font-alexandria), 'Alexandria', 'Segoe UI', sans-serif;
+  --md-sys-typescale-font-latin: var(--font-montserrat), 'Montserrat', 'Segoe UI', sans-serif;
+
+  --md-sys-typescale-display-large-size: 3.5625rem;
+  --md-sys-typescale-display-large-line: 4rem;
+  --md-sys-typescale-display-medium-size: 2.8125rem;
+  --md-sys-typescale-display-medium-line: 3.25rem;
+  --md-sys-typescale-display-small-size: 2.25rem;
+  --md-sys-typescale-display-small-line: 2.75rem;
+
+  --md-sys-typescale-headline-large-size: 2rem;
+  --md-sys-typescale-headline-large-line: 2.5rem;
+  --md-sys-typescale-headline-medium-size: 1.75rem;
+  --md-sys-typescale-headline-medium-line: 2.25rem;
+  --md-sys-typescale-headline-small-size: 1.5rem;
+  --md-sys-typescale-headline-small-line: 2rem;
+
+  --md-sys-typescale-title-large-size: 1.375rem;
+  --md-sys-typescale-title-large-line: 1.75rem;
+  --md-sys-typescale-title-medium-size: 1rem;
+  --md-sys-typescale-title-medium-line: 1.5rem;
+  --md-sys-typescale-title-small-size: 0.875rem;
+  --md-sys-typescale-title-small-line: 1.25rem;
+
+  --md-sys-typescale-body-large-size: 1rem;
+  --md-sys-typescale-body-large-line: 1.5rem;
+  --md-sys-typescale-body-medium-size: 0.875rem;
+  --md-sys-typescale-body-medium-line: 1.25rem;
+  --md-sys-typescale-body-small-size: 0.75rem;
+  --md-sys-typescale-body-small-line: 1rem;
+
+  --md-sys-typescale-label-large-size: 0.875rem;
+  --md-sys-typescale-label-large-line: 1.25rem;
+  --md-sys-typescale-label-medium-size: 0.75rem;
+  --md-sys-typescale-label-medium-line: 1rem;
+  --md-sys-typescale-label-small-size: 0.6875rem;
+  --md-sys-typescale-label-small-line: 1rem;
+
+  /* Arabic script sits taller than Latin at the same nominal size, so Arabic
+     rendering gets slightly looser leading to avoid clipped ascenders. */
+  --md-sys-typescale-arabic-line-adjust: 1.15;
+
+  /* Shape scale */
+  --md-sys-shape-corner-none: 0;
+  --md-sys-shape-corner-extra-small: 0.25rem;
+  --md-sys-shape-corner-small: 0.5rem;
+  --md-sys-shape-corner-medium: 0.75rem;
+  --md-sys-shape-corner-large: 1rem;
+  --md-sys-shape-corner-extra-large: 1.75rem;
+  --md-sys-shape-corner-full: 9999px;
+
+  /* Elevation — MD3 expresses depth with tinted shadows rather than pure black,
+     so surfaces stay in the palette instead of turning grey. */
+  --md-sys-elevation-level0: none;
+  --md-sys-elevation-level1: 0 1px 2px 0 rgb(0 0 0 / 0.3), 0 1px 3px 1px rgb(0 0 0 / 0.15);
+  --md-sys-elevation-level2: 0 1px 2px 0 rgb(0 0 0 / 0.3), 0 2px 6px 2px rgb(0 0 0 / 0.15);
+  --md-sys-elevation-level3: 0 4px 8px 3px rgb(0 0 0 / 0.15), 0 1px 3px 0 rgb(0 0 0 / 0.3);
+  --md-sys-elevation-level4: 0 6px 10px 4px rgb(0 0 0 / 0.15), 0 2px 3px 0 rgb(0 0 0 / 0.3);
+  --md-sys-elevation-level5: 0 8px 12px 6px rgb(0 0 0 / 0.15), 0 4px 4px 0 rgb(0 0 0 / 0.3);
+
+  /* State layer opacities */
+  --md-sys-state-hover-opacity: 0.08;
+  --md-sys-state-focus-opacity: 0.12;
+  --md-sys-state-pressed-opacity: 0.12;
+  --md-sys-state-dragged-opacity: 0.16;
+  --md-sys-state-disabled-content-opacity: 0.38;
+  --md-sys-state-disabled-container-opacity: 0.12;
+
+  /* Motion — durations and easings from the MD3 spec. UI transitions stay under
+     300 ms so the interface feels immediate rather than animated. */
+  --md-sys-motion-duration-short1: 50ms;
+  --md-sys-motion-duration-short2: 100ms;
+  --md-sys-motion-duration-short3: 150ms;
+  --md-sys-motion-duration-short4: 200ms;
+  --md-sys-motion-duration-medium1: 250ms;
+  --md-sys-motion-duration-medium2: 300ms;
+  --md-sys-motion-duration-long1: 450ms;
+  --md-sys-motion-duration-long2: 500ms;
+
+  --md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --md-sys-motion-easing-standard-decelerate: cubic-bezier(0, 0, 0, 1);
+  --md-sys-motion-easing-standard-accelerate: cubic-bezier(0.3, 0, 1, 1);
+  --md-sys-motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+
+  /* Layout constants used by the app shell. */
+  --it-sum-header-height: 4rem;
+  --it-sum-sidebar-width: 17.5rem;
+  --it-sum-sidebar-collapsed-width: 4.5rem;
+  --it-sum-content-max-width: 90rem;
+  --it-sum-focus-ring-width: 3px;
+}
+
+/**
+ * Focus visibility is defined once, globally, rather than per component. A
+ * keyboard user must always be able to see where they are, and the ring uses the
+ * primary colour so it is visible against every surface in the ladder.
+ */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: var(--it-sum-focus-ring-width) solid var(--md-sys-color-primary);
+  outline-offset: 2px;
+  border-radius: var(--md-sys-shape-corner-extra-small);
+}
+
+/**
+ * Respect the operating-system reduced-motion preference everywhere. GSAP and
+ * Motion both read this, but CSS transitions need to be disabled explicitly.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/**
+ * Arabic typography adjustments. Applied by attribute rather than by class so
+ * they follow the document language automatically, including inside portals.
+ */
+:root:lang(ar),
+[lang='ar'] {
+  font-family: var(--md-sys-typescale-font-arabic);
+  line-height: var(--md-sys-typescale-arabic-line-adjust);
+  letter-spacing: 0;
+}
+
+[lang='en'] {
+  font-family: var(--md-sys-typescale-font-latin);
+}
+
+/**
+ * Numerals stay Latin even in Arabic copy: students read page counts, file sizes
+ * and scores far more fluently as "12" than as "١٢", and mixing them inside an
+ * RTL line also causes bidirectional reordering bugs.
+ */
+[lang='ar'] :where(time, .tabular, [data-numeric]) {
+  font-family: var(--md-sys-typescale-font-latin);
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
+  unicode-bidi: isolate;
+}

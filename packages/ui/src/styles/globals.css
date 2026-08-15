@@ -1,0 +1,282 @@
+@import 'tailwindcss';
+
+@import './generated/md3-tokens.css';
+@import './system.css';
+
+/**
+ * Tailwind v4 theme bridge.
+ *
+ * Every colour utility resolves to an MD3 role rather than a raw hex value, so
+ * `bg-surface-container` automatically follows the light/dark scheme and any
+ * rebrand. There are deliberately no palette-name utilities such as `bg-teal-500`
+ * in this project: if a component could reach a raw colour, theming would rot.
+ */
+@theme inline {
+  --color-primary: var(--md-sys-color-primary);
+  --color-on-primary: var(--md-sys-color-on-primary);
+  --color-primary-container: var(--md-sys-color-primary-container);
+  --color-on-primary-container: var(--md-sys-color-on-primary-container);
+
+  --color-secondary: var(--md-sys-color-secondary);
+  --color-on-secondary: var(--md-sys-color-on-secondary);
+  --color-secondary-container: var(--md-sys-color-secondary-container);
+  --color-on-secondary-container: var(--md-sys-color-on-secondary-container);
+
+  --color-tertiary: var(--md-sys-color-tertiary);
+  --color-on-tertiary: var(--md-sys-color-on-tertiary);
+  --color-tertiary-container: var(--md-sys-color-tertiary-container);
+  --color-on-tertiary-container: var(--md-sys-color-on-tertiary-container);
+
+  --color-reward: var(--md-sys-color-reward);
+  --color-on-reward: var(--md-sys-color-on-reward);
+  --color-reward-container: var(--md-sys-color-reward-container);
+  --color-on-reward-container: var(--md-sys-color-on-reward-container);
+
+  --color-error: var(--md-sys-color-error);
+  --color-on-error: var(--md-sys-color-on-error);
+  --color-error-container: var(--md-sys-color-error-container);
+  --color-on-error-container: var(--md-sys-color-on-error-container);
+
+  --color-background: var(--md-sys-color-background);
+  --color-on-background: var(--md-sys-color-on-background);
+  --color-surface: var(--md-sys-color-surface);
+  --color-on-surface: var(--md-sys-color-on-surface);
+  --color-surface-variant: var(--md-sys-color-surface-variant);
+  --color-on-surface-variant: var(--md-sys-color-on-surface-variant);
+  --color-surface-dim: var(--md-sys-color-surface-dim);
+  --color-surface-bright: var(--md-sys-color-surface-bright);
+  --color-surface-lowest: var(--md-sys-color-surface-container-lowest);
+  --color-surface-low: var(--md-sys-color-surface-container-low);
+  --color-surface-container: var(--md-sys-color-surface-container);
+  --color-surface-high: var(--md-sys-color-surface-container-high);
+  --color-surface-highest: var(--md-sys-color-surface-container-highest);
+
+  --color-outline: var(--md-sys-color-outline);
+  --color-outline-variant: var(--md-sys-color-outline-variant);
+  --color-inverse-surface: var(--md-sys-color-inverse-surface);
+  --color-inverse-on-surface: var(--md-sys-color-inverse-on-surface);
+  --color-inverse-primary: var(--md-sys-color-inverse-primary);
+  --color-scrim: var(--md-sys-color-scrim);
+
+  --radius-xs: var(--md-sys-shape-corner-extra-small);
+  --radius-sm: var(--md-sys-shape-corner-small);
+  --radius-md: var(--md-sys-shape-corner-medium);
+  --radius-lg: var(--md-sys-shape-corner-large);
+  --radius-xl: var(--md-sys-shape-corner-extra-large);
+  --radius-full: var(--md-sys-shape-corner-full);
+
+  --shadow-level1: var(--md-sys-elevation-level1);
+  --shadow-level2: var(--md-sys-elevation-level2);
+  --shadow-level3: var(--md-sys-elevation-level3);
+  --shadow-level4: var(--md-sys-elevation-level4);
+  --shadow-level5: var(--md-sys-elevation-level5);
+
+  --font-arabic: var(--md-sys-typescale-font-arabic);
+  --font-latin: var(--md-sys-typescale-font-latin);
+
+  --ease-standard: var(--md-sys-motion-easing-standard);
+  --ease-emphasized: var(--md-sys-motion-easing-emphasized);
+}
+
+/**
+ * MD3 typescale as utilities. Providing these as classes keeps components from
+ * hand-picking `text-[1.375rem]`, which is how a type system quietly dies.
+ */
+@utility text-display-large {
+  font-size: var(--md-sys-typescale-display-large-size);
+  line-height: var(--md-sys-typescale-display-large-line);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+@utility text-display-medium {
+  font-size: var(--md-sys-typescale-display-medium-size);
+  line-height: var(--md-sys-typescale-display-medium-line);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+@utility text-display-small {
+  font-size: var(--md-sys-typescale-display-small-size);
+  line-height: var(--md-sys-typescale-display-small-line);
+  font-weight: 600;
+}
+
+@utility text-headline-large {
+  font-size: var(--md-sys-typescale-headline-large-size);
+  line-height: var(--md-sys-typescale-headline-large-line);
+  font-weight: 600;
+}
+
+@utility text-headline-medium {
+  font-size: var(--md-sys-typescale-headline-medium-size);
+  line-height: var(--md-sys-typescale-headline-medium-line);
+  font-weight: 600;
+}
+
+@utility text-headline-small {
+  font-size: var(--md-sys-typescale-headline-small-size);
+  line-height: var(--md-sys-typescale-headline-small-line);
+  font-weight: 600;
+}
+
+@utility text-title-large {
+  font-size: var(--md-sys-typescale-title-large-size);
+  line-height: var(--md-sys-typescale-title-large-line);
+  font-weight: 600;
+}
+
+@utility text-title-medium {
+  font-size: var(--md-sys-typescale-title-medium-size);
+  line-height: var(--md-sys-typescale-title-medium-line);
+  font-weight: 600;
+  letter-spacing: 0.009em;
+}
+
+@utility text-title-small {
+  font-size: var(--md-sys-typescale-title-small-size);
+  line-height: var(--md-sys-typescale-title-small-line);
+  font-weight: 600;
+  letter-spacing: 0.007em;
+}
+
+@utility text-body-large {
+  font-size: var(--md-sys-typescale-body-large-size);
+  line-height: var(--md-sys-typescale-body-large-line);
+  font-weight: 400;
+}
+
+@utility text-body-medium {
+  font-size: var(--md-sys-typescale-body-medium-size);
+  line-height: var(--md-sys-typescale-body-medium-line);
+  font-weight: 400;
+}
+
+@utility text-body-small {
+  font-size: var(--md-sys-typescale-body-small-size);
+  line-height: var(--md-sys-typescale-body-small-line);
+  font-weight: 400;
+}
+
+@utility text-label-large {
+  font-size: var(--md-sys-typescale-label-large-size);
+  line-height: var(--md-sys-typescale-label-large-line);
+  font-weight: 600;
+  letter-spacing: 0.007em;
+}
+
+@utility text-label-medium {
+  font-size: var(--md-sys-typescale-label-medium-size);
+  line-height: var(--md-sys-typescale-label-medium-line);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+@utility text-label-small {
+  font-size: var(--md-sys-typescale-label-small-size);
+  line-height: var(--md-sys-typescale-label-small-line);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/** MD3 state layer, applied on hover/press without extra DOM nodes. */
+@utility state-layer {
+  position: relative;
+  isolation: isolate;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: currentColor;
+    opacity: 0;
+    transition: opacity var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  &:hover::after {
+    opacity: var(--md-sys-state-hover-opacity);
+  }
+
+  &:active::after {
+    opacity: var(--md-sys-state-pressed-opacity);
+  }
+}
+
+/** Screen-reader-only text that still receives focus when it becomes relevant. */
+@utility sr-only-focusable {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+
+  &:focus-visible {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    background-color: var(--md-sys-color-background);
+    color: var(--md-sys-color-on-background);
+    min-height: 100dvh;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Headings inherit weight from the typescale utilities, not from the browser. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: inherit;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Media never overflows its container, which matters for the 96-page scans. */
+  img,
+  svg,
+  video,
+  canvas,
+  iframe {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Selection uses the brand rather than the browser default blue. */
+  ::selection {
+    background-color: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
+  }
+
+  /* Themed scrollbars so long documents feel part of the product. */
+  * {
+    scrollbar-color: var(--md-sys-color-outline-variant) transparent;
+    scrollbar-width: thin;
+  }
+}

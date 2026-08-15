@@ -1,10 +1,5 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "dist",
-    "declaration": true,
-    "declarationMap": true
-  },
-  "include": ["src/**/*.ts"]
+  "extends": "@it-sum/config/tsconfig/library.json",
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "coverage", ".turbo"]
 }

@@ -1,9 +1,67 @@
+# Dependencies
 node_modules/
+.pnpm-store/
+
+# Build output
 dist/
+build/
+.next/
+out/
+*.tsbuildinfo
+
+# Turborepo
 .turbo/
+
+# Environment & secrets — NEVER commit these
 .env
-.env.*
-!.env.example
-*.log
-.DS_Store
+.env.local
+.env.*.local
+.env.development
+.env.production
+*.pem
+*.key
+client_secret*.json
+service-account*.json
+gcp-credentials*.json
+credentials.json
+token.json
+
+# Supabase local
+supabase/.branches/
+supabase/.temp/
+supabase/.env
+
+# Testing
 coverage/
+playwright-report/
+test-results/
+blob-report/
+.nyc_output/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+logs/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.recommended.json
+*.swp
+
+# Generated artifacts (committed selectively — see docs/ARCHITECTURE.md)
+apps/api/openapi.json
+packages/ui/src/tokens/generated/
+
+# Generated Supabase MCP payloads (recreated from tracked SQL when needed)
+supabase/*payload.json
+supabase/apply_initial_schema.json
+supabase/seed/*payload.json
+
+# Local scratch
+tmp/
+.cache/

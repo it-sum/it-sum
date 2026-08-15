@@ -1,0 +1,11 @@
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+/**
+ * Merges conditional class names and resolves Tailwind conflicts so that a
+ * caller-supplied `className` always wins over a component's defaults. Without
+ * this, overriding padding on a shared component silently does nothing.
+ */
+export function cn(...inputs: ClassValue[]): string {
+  return twMerge(clsx(inputs));
+}
