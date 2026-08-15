@@ -18,6 +18,7 @@ const envSchema = z.object({
   GOOGLE_SERVICE_ACCOUNT_JSON: z.string().optional(),
   GOOGLE_SHARED_DRIVE_ID: z.string().optional(),
   STREAM_TICKET_SECRET: z.string().min(32).optional(),
+  QUIZ_ATTEMPT_SECRET: z.string().min(32).optional(),
   INTERNAL_CRON_SECRET: z.string().min(32).optional(),
 });
 

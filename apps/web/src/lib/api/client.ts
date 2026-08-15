@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { LibraryQuery, LibraryResponse, StreamTicket } from '@it-sum/shared';
+import type { AnswerInput, AttemptResult, AutosaveAnswersRequest, LibraryQuery, LibraryResponse, ProgressUpdateResponse, StartAttemptResponse, StreamTicket, SubmitAttemptRequest } from '@it-sum/shared';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:3001/api/v1';
 const SESSION_KEY = 'it_sum_session';
@@ -43,3 +43,24 @@ export async function issueStreamTicket(resourceId: string): Promise<StreamTicke
 export function streamUrl(ticket: StreamTicket) {
   return ticket.url.startsWith('http') ? ticket.url : `${API_BASE_URL.replace(/\/api\/v1$/, '')}${ticket.url}`;
 }
+
+export async function syncProgress(payload: { resourceId: string; percent: number; lastPage?: number | null; lastSecond?: number | null; elapsedSeconds?: number }) {
+  const { data } = await apiClient.post<ProgressUpdateResponse>('/progress', { ...payload, idempotencyKey: globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}` });
+  return data;
+}
+
+export async function startQuiz(quizId: string) {
+  const { data } = await apiClient.get<StartAttemptResponse>(`/quizzes/${quizId}`);
+  return data;
+}
+
+export async function autosaveQuiz(attemptId: string, payload: AutosaveAnswersRequest) {
+  return apiClient.post(`/quizzes/attempts/${attemptId}/autosave`, payload);
+}
+
+export async function submitQuiz(attemptId: string, payload: SubmitAttemptRequest) {
+  const { data } = await apiClient.post<AttemptResult>(`/quizzes/attempts/${attemptId}/submit`, payload);
+  return data;
+}
+
+export type { AnswerInput };

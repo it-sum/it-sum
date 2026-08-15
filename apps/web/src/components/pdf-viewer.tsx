@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, FileWarning, Minus, Plus, RotateCcw } from 'lucide-react';
 import { Button, Card, ProgressBar } from '@it-sum/ui';
+import { isLiveApi, syncProgress } from '../lib/api/client';
 import { useProgressStore } from '../lib/stores/progress-store';
 
 interface PdfViewerProps {
@@ -56,7 +57,9 @@ export function PdfViewer({ resourceId, url, title, pageCount, textQuality = 'un
         await pdfPage.render({ canvas, canvasContext: context, viewport }).promise;
         if (!cancelled) {
           const percent = document.numPages ? Math.round((pageNumber / document.numPages) * 100) : 0;
-          updateProgress(resourceId, { percent, lastPage: pageNumber, completed: pageNumber >= document.numPages });
+          const completed = pageNumber >= document.numPages;
+          updateProgress(resourceId, { percent, lastPage: pageNumber, completed });
+          if (isLiveApi()) void syncProgress({ resourceId, percent, lastPage: pageNumber });
           setLoading(false);
         }
       };

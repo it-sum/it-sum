@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { CheckCircle2, PlayCircle } from 'lucide-react';
 import { Card, ProgressBar } from '@it-sum/ui';
+import { isLiveApi, syncProgress } from '../lib/api/client';
 import { useProgressStore } from '../lib/stores/progress-store';
 
 declare global {
@@ -64,7 +65,10 @@ export function YouTubePlayer({ resourceId, videoId, title }: YouTubePlayerProps
                 const current = player.getCurrentTime();
                 const total = player.getDuration();
                 setSeconds(current);
-                updateProgress(resourceId, { lastSecond: current, percent: total ? Math.round((current / total) * 100) : 0, completed: total > 0 && current >= total - 5 });
+                const percent = total ? Math.round((current / total) * 100) : 0;
+                const completed = total > 0 && current >= total - 5;
+                updateProgress(resourceId, { lastSecond: current, percent, completed });
+                if (isLiveApi()) void syncProgress({ resourceId, percent, lastSecond: current, elapsedSeconds: 5 });
               }, 5000);
             } else if (timerRef.current) {
               clearInterval(timerRef.current);

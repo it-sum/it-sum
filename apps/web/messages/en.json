@@ -118,6 +118,9 @@
     "continue": "Continue learning",
     "seeAll": "See all resources",
     "open": "Open",
+    "quizzesTitle": "Practice quizzes",
+    "takeQuiz": "Take quiz",
+    "rewards": "Earn points and badges",
     "tipTitle": "Study tip",
     "tipBody": "Short, regular sessions work better than one long cram. Read a summary, watch the explanation, then test yourself.",
     "metrics": {
