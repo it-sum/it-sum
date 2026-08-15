@@ -41,11 +41,13 @@ const SIZE_CLASSES: Record<ButtonSize, string> = {
 export interface LinkButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
+  startIcon?: ReactNode;
+  endIcon?: ReactNode;
   fullWidth?: boolean;
 }
 
 export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(function LinkButton(
-  { variant = 'filled', size = 'md', fullWidth = false, className, children, ...rest },
+  { variant = 'filled', size = 'md', startIcon, endIcon, fullWidth = false, className, children, ...rest },
   ref,
 ) {
   return (
@@ -54,7 +56,9 @@ export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(functio
       'transition-[box-shadow,background-color,color] duration-200 ease-standard',
       VARIANT_CLASSES[variant], SIZE_CLASSES[size], fullWidth && 'w-full', className,
     )} {...rest}>
+      {startIcon != null && <span className="shrink-0 [&>svg]:size-[1.125rem]" aria-hidden="true">{startIcon}</span>}
       <span className="truncate">{children}</span>
+      {endIcon != null && <span className="shrink-0 [&>svg]:size-[1.125rem]" aria-hidden="true">{endIcon}</span>}
     </a>
   );
 });

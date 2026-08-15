@@ -17,7 +17,7 @@ export function LoginForm() {
 
   function enterDemo(role: DemoRole) {
     setDemoSession({ role, email: DEMO_ACCOUNTS[role].email, name: DEMO_ACCOUNTS[role].name });
-    router.push(searchParams.get('next') ?? `/${locale}/app`);
+    router.push(searchParams.get('next') ?? `/${locale}/${role === 'admin' ? 'admin' : 'student'}`);
     router.refresh();
   }
 
@@ -34,7 +34,7 @@ export function LoginForm() {
       return;
     }
     setDemoSession(session);
-    router.push(searchParams.get('next') ?? `/${locale}/app`);
+    router.push(searchParams.get('next') ?? `/${locale}/${session.role === 'admin' ? 'admin' : 'student'}`);
     router.refresh();
   }
 
