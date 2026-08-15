@@ -44,18 +44,19 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <>
-      <section className="relative isolate overflow-hidden px-4 pb-16 pt-14 sm:px-6 md:pb-24 md:pt-20 lg:px-8 lg:pt-24">
+      <section className="relative isolate min-h-[calc(100svh-5rem)] overflow-hidden px-4 pb-16 pt-14 sm:px-6 md:pb-24 md:pt-20 lg:px-8 lg:pt-24">
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_8%_12%,color-mix(in_srgb,var(--md-sys-color-primary-container)_48%,transparent),transparent_28%),radial-gradient(circle_at_88%_22%,color-mix(in_srgb,var(--md-sys-color-tertiary-container)_40%,transparent),transparent_25%)]" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-36 bg-gradient-to-t from-background to-transparent" />
+        <div className="pointer-events-none absolute -end-24 top-1/2 -z-10 size-72 -translate-y-1/2 rounded-full bg-secondary-container/35 blur-3xl" />
 
         <div className="mx-auto grid max-w-[var(--it-sum-content-max-width)] items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(31rem,0.8fr)] lg:gap-20">
-          <div className="max-w-2xl">
-            <Badge tone="primary" icon={<Sparkles />} className="rounded-full px-3 py-1.5">{t('home.heroBadge')}</Badge>
-            <h1 className="mt-7 max-w-2xl text-display-small text-on-surface sm:text-display-medium lg:text-display-large">{t('home.heroTitle')}</h1>
-            <p className="mt-6 max-w-xl text-body-large leading-relaxed text-on-surface-variant sm:text-title-medium">{t('home.heroSubtitle')}</p>
+          <div className="max-w-2xl lg:pb-8">
+            <Badge tone="primary" icon={<Sparkles />} className="glass-control rounded-full border-primary/20 px-3.5 py-1.5 shadow-level1">{t('home.heroBadge')}</Badge>
+            <h1 className="mt-7 max-w-2xl text-balance text-display-small tracking-[-0.045em] text-on-surface sm:text-display-medium lg:text-display-large">{t('home.heroTitle')}</h1>
+            <p className="mt-6 max-w-xl text-balance text-body-large leading-relaxed text-on-surface-variant sm:text-title-medium">{t('home.heroSubtitle')}</p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link href="/register"><Button size="lg" endIcon={<ArrowInline />}>{t('home.heroPrimaryCta')}</Button></Link>
-              <Link href="/departments"><Button size="lg" variant="outlined">{t('home.heroSecondaryCta')}</Button></Link>
+              <Link href="/register"><Button size="lg" className="min-w-44" endIcon={<ArrowInline />}>{t('home.heroPrimaryCta')}</Button></Link>
+              <Link href="/departments"><Button size="lg" variant="outlined" className="min-w-44" startIcon={<FolderTree />}>{t('home.heroSecondaryCta')}</Button></Link>
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-3 text-body-small text-on-surface-variant">
               <span className="inline-flex items-center gap-2"><span className="size-2 rounded-full bg-tertiary" aria-hidden="true" />{t('common.poweredBy')}</span>
@@ -64,7 +65,16 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </div>
           </div>
 
-          <Card variant="elevated" className="relative overflow-hidden rounded-[15px] border border-outline-variant/60 glass-panel p-2 shadow-level4">
+          <div className="relative">
+            <div className="absolute -start-5 top-10 z-10 hidden rounded-[15px] border border-outline-variant/70 bg-surface/65 px-3 py-2 shadow-level2 backdrop-blur-xl sm:flex sm:items-center sm:gap-2">
+              <span className="size-2 rounded-full bg-tertiary shadow-[0_0_0_4px_color-mix(in_srgb,var(--md-sys-color-tertiary)_15%,transparent)]" />
+              <span className="text-label-small text-on-surface">{t('home.statsStudents')}</span>
+            </div>
+            <div className="absolute -end-4 bottom-8 z-10 hidden rounded-[15px] border border-outline-variant/70 bg-surface/65 px-3 py-2 shadow-level2 backdrop-blur-xl sm:flex sm:items-center sm:gap-2">
+              <CheckCircle2 className="size-4 text-tertiary" />
+              <span className="text-label-small text-on-surface">{t('home.feature2Title')}</span>
+            </div>
+            <Card variant="elevated" className="relative overflow-hidden rounded-[15px] border border-outline-variant/70 bg-surface/55 p-2 shadow-level4 backdrop-blur-2xl">
             <div className="pointer-events-none absolute -end-20 -top-20 size-56 rounded-full bg-primary-container/50 blur-3xl" />
             <CardBody className="relative overflow-hidden rounded-[15px] border border-outline-variant/50 bg-surface p-0">
               <div className="flex items-center justify-between border-b border-outline-variant/60 px-5 py-5 sm:px-6">
@@ -113,6 +123,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               </div>
             </CardBody>
           </Card>
+        </div>
         </div>
       </section>
 
