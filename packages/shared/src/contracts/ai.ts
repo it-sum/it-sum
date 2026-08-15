@@ -5,14 +5,14 @@ import {
   aiProviderSchema,
   aiRoutingStrategySchema,
   localeSchema,
-} from '../domain/enums.js';
+} from '../domain/enums';
 import {
   countSchema,
   isoDateTimeSchema,
   paginationQuerySchema,
   positiveIntSchema,
   uuidSchema,
-} from '../domain/primitives.js';
+} from '../domain/primitives';
 
 /**
  * AI router contract.

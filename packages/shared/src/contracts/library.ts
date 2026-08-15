@@ -7,7 +7,7 @@ import {
   resourceTypeSchema,
   semesterTermSchema,
   textQualitySchema,
-} from '../domain/enums.js';
+} from '../domain/enums';
 import {
   bilingualRichTextSchema,
   countSchema,
@@ -19,7 +19,7 @@ import {
   positiveIntSchema,
   uuidSchema,
   youtubeIdSchema,
-} from '../domain/primitives.js';
+} from '../domain/primitives';
 
 /**
  * Library contract: folders, resources, videos and the faceted search that makes

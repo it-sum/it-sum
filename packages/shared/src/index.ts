@@ -9,18 +9,18 @@
  * Nothing here may import from `apps/*`. The dependency direction is one-way.
  */
 
-export * from './domain/enums.js';
-export * from './domain/primitives.js';
+export * from './domain/enums';
+export * from './domain/primitives';
 
-export * from './contracts/auth.js';
-export * from './contracts/academics.js';
-export * from './contracts/library.js';
-export * from './contracts/progress.js';
-export * from './contracts/quizzes.js';
-export * from './contracts/rewards.js';
-export * from './contracts/drive.js';
-export * from './contracts/ai.js';
-export * from './contracts/engagement.js';
+export * from './contracts/auth';
+export * from './contracts/academics';
+export * from './contracts/library';
+export * from './contracts/progress';
+export * from './contracts/quizzes';
+export * from './contracts/rewards';
+export * from './contracts/drive';
+export * from './contracts/ai';
+export * from './contracts/engagement';
 
-export * from './routes.js';
-export * from './utils/text.js';
+export * from './routes';
+export * from './utils/text';

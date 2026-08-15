@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { batchLevelSchema, semesterTermSchema } from '../domain/enums.js';
+import { batchLevelSchema, semesterTermSchema } from '../domain/enums';
 import {
   bilingualRichTextSchema,
   bilingualTextSchema,
@@ -8,7 +8,7 @@ import {
   isoDateTimeSchema,
   slugSchema,
   uuidSchema,
-} from '../domain/primitives.js';
+} from '../domain/primitives';
 
 /**
  * Academic structure contract: university, department, batch, semester, course.

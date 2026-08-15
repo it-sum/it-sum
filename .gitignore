@@ -57,6 +57,11 @@ Thumbs.db
 apps/api/openapi.json
 packages/ui/src/tokens/generated/
 
+# Generated Supabase MCP payloads (recreated from tracked SQL when needed)
+supabase/*payload.json
+supabase/apply_initial_schema.json
+supabase/seed/*payload.json
+
 # Local scratch
 tmp/
 .cache/

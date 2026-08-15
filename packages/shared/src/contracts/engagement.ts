@@ -4,7 +4,7 @@ import {
   notificationChannelSchema,
   notificationTypeSchema,
   publicationStateSchema,
-} from '../domain/enums.js';
+} from '../domain/enums';
 import {
   bilingualRichTextSchema,
   bilingualTextSchema,
@@ -16,7 +16,7 @@ import {
   positiveIntSchema,
   slugSchema,
   uuidSchema,
-} from '../domain/primitives.js';
+} from '../domain/primitives';
 
 /**
  * Engagement contract: notifications, roadmaps, contact and moderation.

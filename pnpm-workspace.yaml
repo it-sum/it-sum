@@ -13,3 +13,8 @@ allowBuilds:
   unrs-resolver: true
   '@swc/core': true
   msw: true
+  '@parcel/watcher': true
+  '@scarf/scarf': false
+
+minimumReleaseAgeExclude:
+  - '@hookform/resolvers@5.9.0'

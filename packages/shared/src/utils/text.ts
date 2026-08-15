@@ -1,4 +1,4 @@
-import type { ExamPhase, MaterialKind } from '../domain/enums.js';
+import type { ExamPhase, MaterialKind } from '../domain/enums';
 
 /**
  * Bilingual text utilities shared by the importer, the search layer and the UI.

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { localeSchema } from './enums.js';
+import { localeSchema } from './enums';
 
 /**
  * Reusable primitive schemas.

@@ -16,7 +16,7 @@ import {
   roadmapSchema,
   universitySchema,
   videoSchema,
-} from '../index.js';
+} from '../index';
 import {
   mockAdminDashboard,
   mockBadges,
@@ -34,7 +34,7 @@ import {
   mockRoadmaps,
   mockUniversity,
   mockVideos,
-} from './fixtures.js';
+} from './fixtures';
 
 /**
  * This is the contract test that keeps the two developer tracks honest.

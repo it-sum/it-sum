@@ -6,4 +6,4 @@
  * accidentally bundled into the API or into a production client build.
  */
 
-export * from './fixtures.js';
+export * from './fixtures';

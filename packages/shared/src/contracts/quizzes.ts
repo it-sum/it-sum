@@ -4,7 +4,7 @@ import {
   examPhaseSchema,
   publicationStateSchema,
   questionTypeSchema,
-} from '../domain/enums.js';
+} from '../domain/enums';
 import {
   bilingualRichTextSchema,
   countSchema,
@@ -13,7 +13,7 @@ import {
   percentSchema,
   positiveIntSchema,
   uuidSchema,
-} from '../domain/primitives.js';
+} from '../domain/primitives';
 
 /**
  * Quiz contract.

@@ -3,7 +3,7 @@ import {
   leaderboardScopeSchema,
   leaderboardVisibilitySchema,
   pointReasonSchema,
-} from '../domain/enums.js';
+} from '../domain/enums';
 import {
   bilingualRichTextSchema,
   bilingualTextSchema,
@@ -13,7 +13,7 @@ import {
   paginationQuerySchema,
   percentSchema,
   uuidSchema,
-} from '../domain/primitives.js';
+} from '../domain/primitives';
 
 /**
  * Rewards contract.

@@ -1,10 +1,5 @@
 {
   "extends": "@it-sum/config/tsconfig/library.json",
-  "compilerOptions": {
-    "composite": false,
-    "outDir": "dist",
-    "rootDir": "src"
-  },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist", "coverage", ".turbo"]
 }

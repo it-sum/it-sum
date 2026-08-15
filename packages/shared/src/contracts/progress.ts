@@ -6,8 +6,8 @@ import {
   percentSchema,
   positiveIntSchema,
   uuidSchema,
-} from '../domain/primitives.js';
-import { resourceSummarySchema } from './library.js';
+} from '../domain/primitives';
+import { resourceSummarySchema } from './library';
 
 /**
  * Progress contract.

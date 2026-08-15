@@ -11,7 +11,7 @@ import {
   normalizeLabel,
   similarity,
   slugify,
-} from './text.js';
+} from './text';
 
 /**
  * Every fixture in this file is a real string observed in the source Drive folder

@@ -6,13 +6,13 @@ import {
   themeSchema,
   userRoleSchema,
   userStatusSchema,
-} from '../domain/enums.js';
+} from '../domain/enums';
 import {
   emailSchema,
   isoDateTimeSchema,
   passwordSchema,
   uuidSchema,
-} from '../domain/primitives.js';
+} from '../domain/primitives';
 
 /**
  * Authentication and profile contract.

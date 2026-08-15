@@ -37,7 +37,7 @@ export default [
         'error',
         {
           selector:
-            "JSXAttribute[name.name='className'][value.value=/\\b(ml-|mr-|pl-|pr-|left-|right-|text-left|text-right|border-l|border-r|rounded-l|rounded-r)/]",
+            "JSXAttribute[name.name='className'][value.value=/\\b(ml-|mr-|pl-|pr-|left-|right-|text-left|text-right|border-l(?:-|$)|border-r(?:-|$)|rounded-l(?:-|$)|rounded-r(?:-|$))/]",
           message:
             'Use logical Tailwind utilities (ms-/me-/ps-/pe-/start-/end-/text-start/text-end/border-s/border-e) so RTL works structurally.',
         },

@@ -4,7 +4,7 @@ import {
   examPhaseSchema,
   materialKindSchema,
   syncStatusSchema,
-} from '../domain/enums.js';
+} from '../domain/enums';
 import {
   countSchema,
   driveIdSchema,
@@ -12,7 +12,7 @@ import {
   md5Schema,
   paginationQuerySchema,
   uuidSchema,
-} from '../domain/primitives.js';
+} from '../domain/primitives';
 
 /**
  * Google Drive integration contract.

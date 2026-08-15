@@ -15,7 +15,7 @@ import type {
   Roadmap,
   University,
   Video,
-} from '../index.js';
+} from '../index';
 
 /**
  * Mock fixtures modelled directly on the real `ملخصات قسم IT` Drive folder.
