@@ -238,9 +238,15 @@
   body {
     background-color: var(--md-sys-color-background);
     color: var(--md-sys-color-on-background);
+    font-family: var(--font-latin);
     min-height: 100dvh;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+  }
+
+  :lang(ar) body,
+  body:lang(ar) {
+    font-family: var(--font-arabic);
   }
 
   /* Headings inherit weight from the typescale utilities, not from the browser. */

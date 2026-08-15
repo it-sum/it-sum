@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { Alexandria, Montserrat } from 'next/font/google';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -8,6 +9,18 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { SiteShell } from '@/components/site-shell';
 import { routing } from '@/i18n/routing';
 import '@it-sum/ui/styles.css';
+
+const montserrat = Montserrat({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-montserrat',
+  display: 'swap',
+});
+
+const alexandria = Alexandria({
+  subsets: ['arabic', 'latin'],
+  variable: '--font-alexandria',
+  display: 'swap',
+});
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -72,7 +85,12 @@ export default async function LocaleLayout({
   const messages = await getMessages({ locale });
 
   return (
-    <html lang={locale} dir={direction} suppressHydrationWarning>
+    <html
+      lang={locale}
+      dir={direction}
+      className={`${montserrat.variable} ${alexandria.variable}`}
+      suppressHydrationWarning
+    >
       <body>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <ThemeProvider>
