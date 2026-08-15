@@ -66,7 +66,10 @@ export async function generateMetadata({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#fafdfb',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#fafdfb' },
+    { media: '(prefers-color-scheme: dark)', color: '#191c1c' },
+  ],
 };
 
 export default async function LocaleLayout({
