@@ -55,7 +55,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               </div>
               <CardBody className="space-y-3 p-5">
                 {mockResources.slice(0, 3).map((resource, index) => (
-                  <div key={resource.id} className="flex items-center gap-3 rounded-xl border border-outline-variant/60 bg-surface p-3">
+                  <Link key={resource.id} href="/resources" className="group flex items-center gap-3 rounded-xl border border-outline-variant/60 bg-surface p-3 transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-level1">
                     <div className={`grid size-10 shrink-0 place-items-center rounded-lg ${index === 0 ? 'bg-primary-container text-on-primary-container' : index === 1 ? 'bg-reward-container text-on-reward-container' : 'bg-secondary-container text-on-secondary-container'}`}>
                       {resource.type === 'video' ? <PlayCircle className="size-5" aria-hidden="true" /> : <BookOpen className="size-5" aria-hidden="true" />}
                     </div>
@@ -64,7 +64,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                       <p className="mt-1 text-body-small text-on-surface-variant">{resource.type === 'pdf' ? `${resource.pageCount ?? 0} ${t('common.page')}` : t('resources.watchVideo')}</p>
                     </div>
                     <div className="size-2 rounded-full bg-tertiary" aria-hidden="true" />
-                  </div>
+                  </Link>
                 ))}
               </CardBody>
               <div className="flex items-center justify-between bg-primary px-5 py-4 text-on-primary">

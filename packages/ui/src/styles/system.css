@@ -52,7 +52,7 @@
 
   /* Arabic script sits taller than Latin at the same nominal size, so Arabic
      rendering gets slightly looser leading to avoid clipped ascenders. */
-  --md-sys-typescale-arabic-line-adjust: 1.15;
+  --md-sys-typescale-arabic-line-adjust: 1.32;
 
   /* Shape scale */
   --md-sys-shape-corner-none: 0;
@@ -143,6 +143,10 @@
 
 [lang='en'] {
   font-family: var(--md-sys-typescale-font-latin);
+}
+
+[lang='ar'] :where(p, li, dt, dd) {
+  line-height: 1.8;
 }
 
 /**

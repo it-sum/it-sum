@@ -49,21 +49,21 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
         {t('nav.skipToContent')}
       </a>
 
-      <header className="sticky top-0 z-40 border-b border-outline-variant/60 bg-background/95 backdrop-blur-md">
-        <div className="mx-auto flex h-16 max-w-[var(--it-sum-content-max-width)] items-center gap-4 px-4 sm:px-6 lg:px-8">
+      <header className="sticky top-0 z-40 border-b border-outline-variant/60 bg-background/90 shadow-sm backdrop-blur-xl">
+        <div className="mx-auto flex min-h-16 max-w-[var(--it-sum-content-max-width)] items-center gap-3 px-4 py-2 sm:gap-4 sm:px-6 lg:px-8">
           <Link href="/" aria-label={t('meta.siteName')} className="flex shrink-0 items-center gap-2 rounded-md">
             <Image src="/brand/it-sum-logo.webp" alt="" width={42} height={42} className="size-10 rounded-full object-cover" priority />
             <span className="hidden text-title-medium text-primary sm:inline">IT-SUM</span>
           </Link>
 
-          <nav aria-label={t('nav.mainNavigation')} className="hidden flex-1 items-center justify-center gap-1 lg:flex">
+          <nav aria-label={t('nav.mainNavigation')} className="hidden flex-1 items-center justify-center gap-0.5 xl:flex">
             {PUBLIC_NAV.map((item) => {
               const active = item.href === '/' ? resolvedPath === '/' : resolvedPath.startsWith(item.href);
               return (
                 <Link
                   key={item.key}
                   href={item.href}
-                  className={`state-layer rounded-full px-4 py-2 text-label-large transition-colors ${active ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant hover:text-on-surface'}`}
+                  className={`state-layer rounded-full px-3 py-2 text-label-large transition-colors 2xl:px-4 ${active ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant hover:text-on-surface'}`}
                   aria-current={active ? 'page' : undefined}
                 >
                   {t(`nav.${item.key}`)}
@@ -85,12 +85,12 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
             >
               {theme === 'dark' ? <Sun className="size-5" aria-hidden="true" /> : <Moon className="size-5" aria-hidden="true" />}
             </button>
-            <Link href="/login" className="hidden sm:inline-flex">
+            <Link href="/login" className="hidden md:inline-flex">
               <Button size="sm" variant="outlined">{t('nav.login')}</Button>
             </Link>
             <button
               type="button"
-              className="state-layer grid size-11 place-items-center rounded-full text-on-surface lg:hidden"
+              className="state-layer grid size-11 place-items-center rounded-full text-on-surface xl:hidden"
               title={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
               onClick={() => setMenuOpen((open) => !open)}
               aria-expanded={menuOpen}
@@ -107,10 +107,10 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
             <button
               type="button"
               aria-label={t('nav.closeMenu')}
-              className="fixed inset-0 top-16 z-30 bg-scrim/30 lg:hidden"
+              className="fixed inset-0 top-16 z-30 bg-scrim/30 xl:hidden"
               onClick={() => setMenuOpen(false)}
             />
-            <nav id="mobile-navigation" aria-label={t('nav.mainNavigation')} className="relative z-40 border-t border-outline-variant/60 bg-surface px-4 py-3 shadow-level2 lg:hidden">
+            <nav id="mobile-navigation" aria-label={t('nav.mainNavigation')} className="relative z-40 border-t border-outline-variant/60 bg-surface px-4 py-4 shadow-level2 xl:hidden">
               <div className="mx-auto flex max-w-[var(--it-sum-content-max-width)] flex-col gap-1">
                 {PUBLIC_NAV.map((item) => {
                   const active = item.href === '/' ? resolvedPath === '/' : resolvedPath.startsWith(item.href);
@@ -120,13 +120,13 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
                       href={item.href}
                       onClick={() => setMenuOpen(false)}
                       aria-current={active ? 'page' : undefined}
-                      className={`state-layer rounded-md px-4 py-3 text-title-small ${active ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface hover:bg-surface-high'}`}
+                      className={`state-layer rounded-xl px-4 py-3 text-title-small ${active ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface hover:bg-surface-high'}`}
                     >
                       {t(`nav.${item.key}`)}
                     </Link>
                   );
                 })}
-                <Link href="/login" onClick={() => setMenuOpen(false)} className="mt-2 rounded-full bg-primary px-4 py-3 text-center text-label-large text-on-primary">
+                <Link href="/login" onClick={() => setMenuOpen(false)} className="mt-3 rounded-xl bg-primary px-4 py-3 text-center text-label-large text-on-primary shadow-level1 transition-transform hover:-translate-y-0.5">
                   {t('nav.login')}
                 </Link>
               </div>
