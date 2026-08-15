@@ -173,3 +173,20 @@ Before a pull request, also inspect the migration diff, confirm no `.env` or gen
 [2]: https://turborepo.com/docs/crafting-your-repository/structuring-a-repository "Turborepo repository structure documentation"
 [3]: https://docs.nestjs.com/techniques/configuration "NestJS configuration documentation"
 [4]: https://supabase.com/docs/guides/cli/local-development "Supabase local development documentation"
+
+
+## Local development login
+
+The local Supabase seed includes one development-only student account for testing the login flow after `supabase db reset`:
+
+| Field | Value |
+|---|---|
+| Email | `dev.student@students.ctu.edu.eg` |
+| Password | `ITSumDev2026!` |
+| Tenant | IT-SUM University |
+| Role | Student |
+| Status | Active |
+
+Use these credentials only against a local or disposable development database. Do not reuse the password in staging or production, and do not place it in a production `.env` file. The seed is located at [`supabase/seed/004_dev_login.sql`](../supabase/seed/004_dev_login.sql).
+
+After resetting a local Supabase instance, start the API and web app, open `/en/login` or `/ar/login`, and sign in with the account above. If the project uses a hosted Supabase instance, apply the seed only to a disposable development project; never run it against the production project.

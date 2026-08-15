@@ -63,8 +63,9 @@ function FieldShell({
 }
 
 const CONTROL_CLASSES =
-  'w-full rounded-sm border bg-surface-lowest px-3 py-2.5 text-body-large text-on-surface ' +
-  'placeholder:text-on-surface-variant/70 transition-colors duration-200 ease-standard ' +
+  'w-full rounded-lg border bg-surface-lowest px-4 py-3 text-body-large text-on-surface ' +
+  'placeholder:text-on-surface-variant/70 transition-[border-color,box-shadow,background-color] duration-200 ease-standard ' +
+  'hover:border-primary/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 ' +
   'disabled:cursor-not-allowed disabled:opacity-38';
 
 export interface TextFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'id'> {
@@ -256,8 +257,8 @@ export const CheckboxField = forwardRef<HTMLInputElement, CheckboxFieldProps>(
             aria-invalid={error != null || undefined}
             aria-describedby={error != null ? `${id}-error` : undefined}
             className={cn(
-              'mt-0.5 size-5 shrink-0 cursor-pointer rounded-xs border-2 border-outline',
-              'accent-[var(--md-sys-color-primary)]',
+              'mt-0.5 size-5 shrink-0 cursor-pointer rounded-md border-2 border-outline',
+              'accent-[var(--md-sys-color-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2',
               error != null && 'border-error',
               className,
             )}

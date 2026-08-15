@@ -12,11 +12,13 @@ Run migrations in filename order:
 
 | Migration | Main contents |
 |---|---|
-| `0001_extensions.sql` | `vector`, `pg_trgm`, `unaccent`, `pg_cron`, `pg_net`, and the `private` schema. |
-| `0002_tenancy_identity_structure_library.sql` | Tenant roots, identities, academic structure, searchable library, folders, resources, bookmarks, and collections. |
-| `0003_operational_ai.sql` | Drive state, sync records, videos, quizzes, progress, rewards, notifications, governance, audit, documents, and AI tables. |
+| `20260815120000_initial_schema.sql` | Authoritative core schema: extensions, universities, profiles, academic structure, resources, engagement, support, audit, and RLS foundations. |
+| `20260815121500_align_status_enums.sql` | Aligns database status values with the shared application contracts. |
+| `20260815122000_add_profile_academic_fields.sql` | Adds profile academic fields used by registration and tenant-scoped profile responses. |
+| `20260815123000_align_resource_contract.sql` | Aligns resource status and metadata with the shared resource contract. |
+| `20260815124000_drive_sync_tables.sql` | Adds Drive connection, sync, and ingestion state tables. |
 
-The current migration set is a schema foundation. The next migration should add helper functions and explicit RLS policies after the team confirms the exact JWT custom-claim shape used by the Supabase project.
+The timestamped files in `supabase/migrations` are the authoritative active schema. The earlier numbered drafts are retained in `supabase/legacy-migrations` for reference only and must not be applied. The next migration should add helper functions and explicit RLS policies after the team confirms the exact JWT custom-claim shape used by the Supabase project.
 
 ## Tenant and identity tables
 

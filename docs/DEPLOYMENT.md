@@ -68,9 +68,11 @@ Use a separate Supabase project, Google OAuth client, signing secret, and encryp
 Apply migrations in order and record the resulting version:
 
 ```text
-0001_extensions.sql
-0002_tenancy_identity_structure_library.sql
-0003_operational_ai.sql
+20260815120000_initial_schema.sql
+20260815121500_align_status_enums.sql
+20260815122000_add_profile_academic_fields.sql
+20260815123000_align_resource_contract.sql
+20260815124000_drive_sync_tables.sql
 <next migration: RLS policies and helper functions>
 ```
 
