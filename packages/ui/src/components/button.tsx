@@ -23,13 +23,13 @@ export type ButtonVariant =
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
-  filled: 'border border-primary/20 bg-primary text-on-primary shadow-none hover:bg-primary/90 hover:shadow-level1 active:scale-[0.98]',
-  tonal: 'glass-soft text-on-secondary-container hover:bg-secondary-container/80 hover:shadow-level1 active:scale-[0.98]',
-  outlined: 'glass-control text-primary hover:border-primary hover:bg-primary/[0.08] active:scale-[0.98]',
-  text: 'border border-transparent text-primary bg-transparent hover:border-outline-variant/60 hover:bg-primary/[0.08] active:scale-[0.98]',
-  elevated: 'glass-surface text-primary hover:bg-surface-container/80 hover:shadow-level2 active:scale-[0.98]',
-  reward: 'border border-reward/20 bg-reward-container text-on-reward-container hover:bg-reward-container/85 hover:shadow-level1 active:scale-[0.98]',
-  danger: 'border border-error/20 bg-error text-on-error hover:bg-error/90 hover:shadow-level1 active:scale-[0.98]',
+  filled: 'border border-primary/30 bg-gradient-to-br from-primary to-primary/85 text-on-primary shadow-level2 backdrop-blur-xl hover:-translate-y-0.5 hover:shadow-level3 active:translate-y-0 active:scale-[0.98]',
+  tonal: 'border border-secondary/20 bg-secondary-container/70 text-on-secondary-container shadow-level1 backdrop-blur-xl hover:-translate-y-0.5 hover:bg-secondary-container/85 hover:shadow-level2 active:translate-y-0 active:scale-[0.98]',
+  outlined: 'border border-outline-variant/80 bg-surface/45 text-primary shadow-level1 backdrop-blur-xl hover:-translate-y-0.5 hover:border-primary/60 hover:bg-primary/[0.10] hover:shadow-level2 active:translate-y-0 active:scale-[0.98]',
+  text: 'border border-transparent bg-transparent text-primary hover:-translate-y-0.5 hover:border-outline-variant/60 hover:bg-primary/[0.08] hover:shadow-level1 active:translate-y-0 active:scale-[0.98]',
+  elevated: 'border border-outline-variant/70 bg-surface/65 text-primary shadow-level2 backdrop-blur-xl hover:-translate-y-0.5 hover:bg-surface-container/85 hover:shadow-level3 active:translate-y-0 active:scale-[0.98]',
+  reward: 'border border-reward/30 bg-gradient-to-br from-reward to-reward/80 text-on-reward shadow-level2 backdrop-blur-xl hover:-translate-y-0.5 hover:shadow-level3 active:translate-y-0 active:scale-[0.98]',
+  danger: 'border border-error/25 bg-gradient-to-br from-error to-error/85 text-on-error shadow-level2 backdrop-blur-xl hover:-translate-y-0.5 hover:shadow-level3 active:translate-y-0 active:scale-[0.98]',
 };
 
 const SIZE_CLASSES: Record<ButtonSize, string> = {
@@ -52,8 +52,8 @@ export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(functio
 ) {
   return (
     <a ref={ref} className={cn(
-      'state-layer inline-flex items-center justify-center rounded-[15px] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background',
-      'transition-[box-shadow,background-color,color] duration-200 ease-standard',
+      'state-layer inline-flex items-center justify-center rounded-[15px] font-semibold tracking-[-0.01em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+      'transition-[transform,box-shadow,background-color,border-color,color] duration-200 ease-standard',
       VARIANT_CLASSES[variant], SIZE_CLASSES[size], fullWidth && 'w-full', className,
     )} {...rest}>
       {startIcon != null && <span className="shrink-0 [&>svg]:size-[1.125rem]" aria-hidden="true">{startIcon}</span>}
@@ -101,8 +101,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       disabled={isDisabled}
       aria-busy={isLoading || undefined}
       className={cn(
-        'state-layer inline-flex items-center justify-center rounded-[15px] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background',
-        'transition-[box-shadow,background-color,color] duration-200 ease-standard',
+        'state-layer inline-flex items-center justify-center rounded-[15px] font-semibold tracking-[-0.01em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+        'transition-[transform,box-shadow,background-color,border-color,color] duration-200 ease-standard',
         'disabled:pointer-events-none disabled:opacity-38',
         VARIANT_CLASSES[variant],
         SIZE_CLASSES[size],
