@@ -110,6 +110,22 @@
     "watchVideo": "Watch video",
     "completed": "Completed"
   },
+  "app": {
+    "eyebrow": "Your learning space",
+    "title": "Welcome back",
+    "subtitle": "Pick up where you stopped and keep your study rhythm going.",
+    "browse": "Browse resources",
+    "continue": "Continue learning",
+    "seeAll": "See all resources",
+    "open": "Open",
+    "tipTitle": "Study tip",
+    "tipBody": "Short, regular sessions work better than one long cram. Read a summary, watch the explanation, then test yourself.",
+    "metrics": {
+      "resources": "Resources completed",
+      "streak": "Current streak",
+      "points": "Reward points"
+    }
+  },
   "materialKind": {
     "summary": "Summaries",
     "lecture": "Lectures",

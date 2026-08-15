@@ -1,4 +1,4 @@
-import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from 'react';
+import { forwardRef, type AnchorHTMLAttributes, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../lib/cn';
 
 /**
@@ -37,6 +37,27 @@ const SIZE_CLASSES: Record<ButtonSize, string> = {
   md: 'h-10 min-h-11 sm:min-h-10 px-6 gap-2 text-label-large',
   lg: 'h-12 min-h-12 px-8 gap-2.5 text-title-medium',
 };
+
+export interface LinkButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  fullWidth?: boolean;
+}
+
+export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(function LinkButton(
+  { variant = 'filled', size = 'md', fullWidth = false, className, children, ...rest },
+  ref,
+) {
+  return (
+    <a ref={ref} className={cn(
+      'state-layer inline-flex items-center justify-center rounded-full font-semibold',
+      'transition-[box-shadow,background-color,color] duration-200 ease-standard',
+      VARIANT_CLASSES[variant], SIZE_CLASSES[size], fullWidth && 'w-full', className,
+    )} {...rest}>
+      <span className="truncate">{children}</span>
+    </a>
+  );
+});
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
