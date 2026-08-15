@@ -8,10 +8,10 @@ import {
   type LibraryResponse,
   type StreamTicket,
 } from '@it-sum/shared';
-import { type DriveService } from '../drive/drive.service';
+import { DriveService } from '../drive/drive.service';
 import type { AuthenticatedUser } from '../../common/auth/auth.types';
-import { type SupabaseService } from '../../common/supabase/supabase.service';
-import { type StreamTicketService } from './stream-ticket.service';
+import { SupabaseService } from '../../common/supabase/supabase.service';
+import { StreamTicketService } from './stream-ticket.service';
 
 function richText(value: unknown) {
   if (value && typeof value === 'object') return value;

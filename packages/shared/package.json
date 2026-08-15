@@ -5,13 +5,22 @@
   "description": "The IT-SUM API contract: Zod schemas, inferred types, constants and mock fixtures shared by the web and API workspaces",
   "license": "MIT",
   "type": "module",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./src/index.ts",
-    "./mocks": "./src/mocks/index.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./mocks": {
+      "types": "./dist/mocks/index.d.ts",
+      "import": "./dist/mocks/index.js",
+      "default": "./dist/mocks/index.js"
+    }
   },
   "scripts": {
+    "build": "tsc -p tsconfig.json --incremental false && node scripts/fix-esm-extensions.mjs",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "vitest run",

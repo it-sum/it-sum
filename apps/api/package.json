@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/main.ts",
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json --incremental false && node scripts/fix-esm-extensions.mjs",
     "start": "node dist/main.js",
     "lint": "eslint src --max-warnings 0",
     "typecheck": "tsc --noEmit -p tsconfig.json",

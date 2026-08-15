@@ -3,7 +3,7 @@ import { autosaveAnswersRequestSchema, submitAttemptRequestSchema, type Autosave
 import { CurrentUser } from '../../common/auth/current-user.decorator';
 import type { AuthenticatedUser } from '../../common/auth/auth.types';
 import { ZodValidationPipe } from '../../common/http/zod-validation.pipe';
-import { type QuizzesService } from './quizzes.service';
+import { QuizzesService } from './quizzes.service';
 
 @Controller('quizzes')
 export class QuizzesController {

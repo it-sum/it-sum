@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { CurrentUser } from '../../common/auth/current-user.decorator';
 import type { AuthenticatedUser } from '../../common/auth/auth.types';
-import { type AcademicsService } from './academics.service';
+import { AcademicsService } from './academics.service';
 
 @Controller('academics')
 export class AcademicsController {

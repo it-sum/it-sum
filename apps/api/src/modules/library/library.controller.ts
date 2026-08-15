@@ -2,7 +2,7 @@ import { Controller, Get, Headers, Param, Query, Res } from '@nestjs/common';
 import type { Response } from 'express';
 import { CurrentUser } from '../../common/auth/current-user.decorator';
 import type { AuthenticatedUser } from '../../common/auth/auth.types';
-import { type LibraryService } from './library.service';
+import { LibraryService } from './library.service';
 
 @Controller('library')
 export class LibraryController {

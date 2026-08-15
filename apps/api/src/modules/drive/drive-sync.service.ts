@@ -1,8 +1,8 @@
 import { Injectable, ServiceUnavailableException } from '@nestjs/common';
 import type { DriveChange, DriveFile } from '@it-sum/drive';
 import { getEnv } from '../../common/config/env';
-import { type SupabaseService } from '../../common/supabase/supabase.service';
-import { type DriveService } from './drive.service';
+import { SupabaseService } from '../../common/supabase/supabase.service';
+import { DriveService } from './drive.service';
 
 const DEFAULT_UNIVERSITY_ID = '00000000-0000-4000-8000-000000000001';
 const PDF_MIME = 'application/pdf';

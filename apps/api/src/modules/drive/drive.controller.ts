@@ -2,8 +2,8 @@ import { Controller, Get, Post } from '@nestjs/common';
 import { RequireRoles } from '../../common/auth/auth.decorators';
 import type { AuthenticatedUser } from '../../common/auth/auth.types';
 import { CurrentUser } from '../../common/auth/current-user.decorator';
-import { type DriveService } from './drive.service';
-import { type DriveSyncService } from './drive-sync.service';
+import { DriveService } from './drive.service';
+import { DriveSyncService } from './drive-sync.service';
 
 @Controller('drive')
 @RequireRoles('admin', 'owner')

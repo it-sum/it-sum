@@ -1,7 +1,7 @@
 import { Injectable, ForbiddenException } from '@nestjs/common';
 import { progressOverviewSchema, progressUpdateResponseSchema, type ProgressOverview, type ProgressUpdateRequest, type ProgressUpdateResponse } from '@it-sum/shared';
 import type { AuthenticatedUser } from '../../common/auth/auth.types';
-import { type SupabaseService } from '../../common/supabase/supabase.service';
+import { SupabaseService } from '../../common/supabase/supabase.service';
 
 type DbRow = Record<string, unknown>;
 

@@ -11,7 +11,7 @@ import { CurrentUser } from '../../common/auth/current-user.decorator';
 import { Public } from '../../common/auth/auth.decorators';
 import type { AuthenticatedUser } from '../../common/auth/auth.types';
 import { ZodValidationPipe } from '../../common/http/zod-validation.pipe';
-import { type AuthService } from './auth.service';
+import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {

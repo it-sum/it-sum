@@ -1,8 +1,8 @@
 import { Injectable, ForbiddenException, NotFoundException } from '@nestjs/common';
 import { attemptResultSchema, quizQuestionSchema, quizSummarySchema, startAttemptResponseSchema, type AnswerInput, type AttemptResult, type QuizSummary, type StartAttemptResponse } from '@it-sum/shared';
 import type { AuthenticatedUser } from '../../common/auth/auth.types';
-import { type SupabaseService } from '../../common/supabase/supabase.service';
-import { type QuizAttemptTokenService, type QuizAttemptTokenPayload } from './quiz-attempt-token.service';
+import { SupabaseService } from '../../common/supabase/supabase.service';
+import { QuizAttemptTokenService, type QuizAttemptTokenPayload } from './quiz-attempt-token.service';
 
 type DbRow = Record<string, unknown>;
 

@@ -3,7 +3,7 @@ import { progressUpdateRequestSchema, type ProgressUpdateRequest } from '@it-sum
 import { CurrentUser } from '../../common/auth/current-user.decorator';
 import type { AuthenticatedUser } from '../../common/auth/auth.types';
 import { ZodValidationPipe } from '../../common/http/zod-validation.pipe';
-import { type ProgressService } from './progress.service';
+import { ProgressService } from './progress.service';
 
 @Controller('progress')
 export class ProgressController {

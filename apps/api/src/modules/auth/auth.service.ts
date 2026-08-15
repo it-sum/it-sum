@@ -7,7 +7,7 @@ import {
   type RegisterRequest,
   type Session,
 } from '@it-sum/shared';
-import { type SupabaseService } from '../../common/supabase/supabase.service';
+import { SupabaseService } from '../../common/supabase/supabase.service';
 
 @Injectable()
 export class AuthService {

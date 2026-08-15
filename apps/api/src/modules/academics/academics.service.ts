@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { departmentSchema, departmentTreeSchema, type Department, type DepartmentTree } from '@it-sum/shared';
-import { type SupabaseService } from '../../common/supabase/supabase.service';
+import { SupabaseService } from '../../common/supabase/supabase.service';
 
 function bilingualDescription(value: unknown) {
   if (value && typeof value === 'object') return value;
