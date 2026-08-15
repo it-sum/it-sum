@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Menu, Moon, Sun, X } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { Button } from '@it-sum/ui';
@@ -29,6 +29,19 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   const alternateLabel = currentLocale === 'ar' ? 'English' : 'العربية';
   const resolvedPath = pathname.replace(/^\/(ar|en)/, '') || '/';
   const nextTheme = theme === 'dark' ? 'light' : 'dark';
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [menuOpen]);
 
   return (
     <div className="min-h-dvh bg-background text-on-background">
@@ -77,7 +90,8 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
             </Link>
             <button
               type="button"
-              className="grid size-10 place-items-center rounded-full text-on-surface lg:hidden"
+              className="state-layer grid size-11 place-items-center rounded-full text-on-surface lg:hidden"
+              title={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
               onClick={() => setMenuOpen((open) => !open)}
               aria-expanded={menuOpen}
               aria-controls="mobile-navigation"
@@ -89,18 +103,35 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
         </div>
 
         {menuOpen && (
-          <nav id="mobile-navigation" aria-label={t('nav.mainNavigation')} className="border-t border-outline-variant/60 bg-surface px-4 py-3 lg:hidden">
-            <div className="mx-auto flex max-w-[var(--it-sum-content-max-width)] flex-col gap-1">
-              {PUBLIC_NAV.map((item) => (
-                <Link key={item.key} href={item.href} onClick={() => setMenuOpen(false)} className="rounded-md px-4 py-3 text-title-small text-on-surface hover:bg-surface-high">
-                  {t(`nav.${item.key}`)}
+          <>
+            <button
+              type="button"
+              aria-label={t('nav.closeMenu')}
+              className="fixed inset-0 top-16 z-30 bg-scrim/30 lg:hidden"
+              onClick={() => setMenuOpen(false)}
+            />
+            <nav id="mobile-navigation" aria-label={t('nav.mainNavigation')} className="relative z-40 border-t border-outline-variant/60 bg-surface px-4 py-3 shadow-level2 lg:hidden">
+              <div className="mx-auto flex max-w-[var(--it-sum-content-max-width)] flex-col gap-1">
+                {PUBLIC_NAV.map((item) => {
+                  const active = item.href === '/' ? resolvedPath === '/' : resolvedPath.startsWith(item.href);
+                  return (
+                    <Link
+                      key={item.key}
+                      href={item.href}
+                      onClick={() => setMenuOpen(false)}
+                      aria-current={active ? 'page' : undefined}
+                      className={`state-layer rounded-md px-4 py-3 text-title-small ${active ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface hover:bg-surface-high'}`}
+                    >
+                      {t(`nav.${item.key}`)}
+                    </Link>
+                  );
+                })}
+                <Link href="/login" onClick={() => setMenuOpen(false)} className="mt-2 rounded-full bg-primary px-4 py-3 text-center text-label-large text-on-primary">
+                  {t('nav.login')}
                 </Link>
-              ))}
-              <Link href="/login" onClick={() => setMenuOpen(false)} className="mt-2 rounded-full bg-primary px-4 py-3 text-center text-label-large text-on-primary">
-                {t('nav.login')}
-              </Link>
-            </div>
-          </nav>
+              </div>
+            </nav>
+          </>
         )}
       </header>
 
