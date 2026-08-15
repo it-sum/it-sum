@@ -9,6 +9,15 @@ const envSchema = z.object({
   SUPABASE_SERVICE_ROLE_KEY: z.string().min(10).optional(),
   SUPABASE_JWKS_URL: z.string().url().optional(),
   SUPABASE_JWT_ISSUER: z.string().url().optional(),
+  DRIVE_MODE: z.enum(['oauth_user', 'shared_drive']).default('oauth_user'),
+  DRIVE_ROOT_FOLDER_ID: z.string().min(10).optional(),
+  SYNC_UNIVERSITY_ID: z.string().uuid().optional(),
+  GOOGLE_CLIENT_ID: z.string().optional(),
+  GOOGLE_CLIENT_SECRET: z.string().optional(),
+  GOOGLE_REFRESH_TOKEN: z.string().optional(),
+  GOOGLE_SERVICE_ACCOUNT_JSON: z.string().optional(),
+  GOOGLE_SHARED_DRIVE_ID: z.string().optional(),
+  STREAM_TICKET_SECRET: z.string().min(32).optional(),
   INTERNAL_CRON_SECRET: z.string().min(32).optional(),
 });
 

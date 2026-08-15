@@ -5,7 +5,7 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { type Reflector } from '@nestjs/core';
+import { Reflector } from '@nestjs/core';
 import { jwtClaimsSchema, type UserRole, type UserStatus } from '@it-sum/shared';
 import { createRemoteJWKSet, jwtVerify, type JWTPayload } from 'jose';
 import type { Request } from 'express';
@@ -64,7 +64,7 @@ export class JwtGuard implements CanActivate {
   private jwks: ReturnType<typeof createRemoteJWKSet> | null = null;
   private jwksUrl: string | null = null;
 
-  constructor(private readonly reflector: Reflector) {}
+  private readonly reflector = new Reflector();
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
