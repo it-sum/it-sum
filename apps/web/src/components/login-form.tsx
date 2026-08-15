@@ -29,7 +29,7 @@ export function LoginForm() {
     await new Promise((resolve) => window.setTimeout(resolve, 220));
     const session = authenticateDemo(String(form.get('email') ?? ''), String(form.get('password') ?? ''));
     if (!session) {
-      setError('Demo login only: use one of the credentials shown below. Production Supabase login is not connected in this preview.');
+      setError(t('auth.previewError'));
       setIsSubmitting(false);
       return;
     }
@@ -38,24 +38,52 @@ export function LoginForm() {
     router.refresh();
   }
 
-  return <div className="space-y-6">
-    <Alert tone="info"><strong>Preview mode:</strong> explore the complete interface without Supabase, API, or Google Drive secrets. These accounts are local demo sessions only.</Alert>
-    <form className="space-y-5" onSubmit={handleSubmit} noValidate>
-      {error != null && <Alert tone="error">{error}</Alert>}
-      <TextField label={t('auth.email')} name="email" type="email" placeholder={t('auth.emailPlaceholder')} autoComplete="email" required startIcon={<Mail />} />
-      <TextField label={t('auth.password')} name="password" type="password" autoComplete="current-password" required startIcon={<LockKeyhole />} />
-      <div className="flex flex-wrap items-center justify-between gap-3"><CheckboxField label={t('auth.rememberMe')} name="remember" /><a href="#forgot-password" className="text-body-small text-primary underline-offset-4 hover:underline">{t('auth.forgotPassword')}</a></div>
-      <Button type="submit" fullWidth isLoading={isSubmitting} endIcon={<ArrowRight />}>{t('auth.submitLogin')}</Button>
-    </form>
-    <div className="grid gap-3 sm:grid-cols-2">
-      <DemoAccountCard accountRole="student" onEnter={enterDemo} />
-      <DemoAccountCard accountRole="admin" onEnter={enterDemo} />
+  return (
+    <div className="space-y-7">
+      <Alert tone="info" title={t('auth.previewLabel')}>
+        {t('auth.previewBody')}
+      </Alert>
+      <form className="space-y-5" onSubmit={handleSubmit} noValidate>
+        {error != null && <Alert tone="error" title={t('auth.invalidCredentials')}>{error}</Alert>}
+        <TextField label={t('auth.email')} name="email" type="email" placeholder={t('auth.emailPlaceholder')} autoComplete="email" required startIcon={<Mail />} />
+        <TextField label={t('auth.password')} name="password" type="password" autoComplete="current-password" required startIcon={<LockKeyhole />} />
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <CheckboxField label={t('auth.rememberMe')} name="remember" />
+          <a href="#forgot-password" className="text-body-small font-semibold text-primary underline-offset-4 hover:underline">{t('auth.forgotPassword')}</a>
+        </div>
+        <Button type="submit" fullWidth isLoading={isSubmitting} endIcon={<ArrowRight />}>
+          {t('auth.submitLogin')}
+        </Button>
+      </form>
+      <div className="border-t border-outline-variant/70 pt-6">
+        <div className="mb-4">
+          <h3 className="text-title-medium text-on-surface">{t('auth.demoTitle')}</h3>
+          <p className="mt-1 text-body-small text-on-surface-variant">{t('auth.demoBody')}</p>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <DemoAccountCard accountRole="student" onEnter={enterDemo} t={t} />
+          <DemoAccountCard accountRole="admin" onEnter={enterDemo} t={t} />
+        </div>
+      </div>
     </div>
-  </div>;
+  );
 }
 
-function DemoAccountCard({ accountRole, onEnter }: { accountRole: DemoRole; onEnter: (role: DemoRole) => void }) {
+function DemoAccountCard({ accountRole, onEnter, t }: { accountRole: DemoRole; onEnter: (role: DemoRole) => void; t: ReturnType<typeof useTranslations> }) {
   const account = DEMO_ACCOUNTS[accountRole];
   const isAdmin = accountRole === 'admin';
-  return <Card variant="outlined" className="p-4"><div className="flex items-center justify-between gap-3"><div className="flex items-center gap-2">{isAdmin ? <ShieldCheck className="size-5 text-primary" /> : <UserRound className="size-5 text-primary" />}<span className="font-semibold text-on-surface">{isAdmin ? 'Admin demo' : 'Student demo'}</span></div><Badge tone={isAdmin ? 'primary' : 'info'}>{accountRole}</Badge></div><p className="mt-3 break-all text-xs text-on-surface-variant">{account.email}</p><p className="mt-1 text-xs text-on-surface-variant">Password: <code>{account.password}</code></p><Button type="button" variant="tonal" size="sm" className="mt-4 w-full" onClick={() => onEnter(accountRole)}>Enter demo</Button></Card>;
+  return (
+    <Card variant="outlined" className="bg-surface-container-low/60 p-4 transition-colors hover:border-primary/50 hover:bg-surface-container-low">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex min-w-0 items-center gap-2">
+          {isAdmin ? <ShieldCheck className="size-5 shrink-0 text-primary" aria-hidden="true" /> : <UserRound className="size-5 shrink-0 text-primary" aria-hidden="true" />}
+          <span className="truncate font-semibold text-on-surface">{isAdmin ? t('auth.adminDemo') : t('auth.studentDemo')}</span>
+        </div>
+        <Badge tone={isAdmin ? 'primary' : 'info'}>{isAdmin ? t('auth.adminDemo') : t('auth.studentDemo')}</Badge>
+      </div>
+      <p className="mt-3 break-all text-xs text-on-surface-variant">{account.email}</p>
+      <p className="mt-1 text-xs text-on-surface-variant">{t('auth.password')}: <code className="rounded bg-surface-container px-1.5 py-0.5 font-mono text-on-surface">{account.password}</code></p>
+      <Button type="button" variant="tonal" size="sm" className="mt-4 w-full" onClick={() => onEnter(accountRole)}>{t('auth.enterDemo')}</Button>
+    </Card>
+  );
 }
